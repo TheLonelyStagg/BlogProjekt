@@ -1,0 +1,22 @@
+<h1>Blogi</h1>
+
+<table>
+  <tr>
+    <th>Nazwa</th>
+    <th>Wlasciciel</th>
+    <th>Data</th>
+  </tr>
+
+<% for blog in @blogs %>
+  <tr>
+    <td><%=h blog.name %></td>
+    <td><%=h blog.user_id %></td>
+    <td><%=h blog.dataZalozenia %></td>
+    
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Dodaj bloga', new_blog_path %>

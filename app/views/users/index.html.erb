@@ -1,0 +1,28 @@
+<h1>Userzy</h1>
+
+<table>
+  <tr>
+    <th>Nazwa</th>
+    <th>Haslo</th>
+    <th>Imie</th>
+    <th>Nazwisko</th>
+    <th>Mail</th>
+    <th>Numer</th>
+  </tr>
+
+<% for u in @users %>
+  <tr>
+    <td><%=h u.username %></td>
+    <td><%=h u.password %></td>
+    <td><%=h u.name %></td>
+    <td><%=h u.surname %></td>
+    <td><%=h u.email %></td>
+    <td><%=h u.phoneNumber %></td>
+    
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Dodaj Usera', new_user_path %>

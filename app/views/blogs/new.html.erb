@@ -1,0 +1,17 @@
+<h1>Utwórz blog</h1>
+
+<%= form_with scope: :blog, url: blogs_path, local: true do |form| %>
+  
+
+  <p>
+    <%= form.label :name %><br />
+    <%= form.text_field :name %>
+  </p>
+  
+  <p>
+    <%= form.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', blogs_path %>
+

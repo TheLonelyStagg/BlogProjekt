@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  data: 2018-05-07
+  status: MyString
+  ifTop: false
+
+two:
+  data: 2018-05-07
+  status: MyString
+  ifTop: false
