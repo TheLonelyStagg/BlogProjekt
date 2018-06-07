@@ -6,6 +6,7 @@
     <th>Nazwa</th>
     <th>Wlasciciel</th>
     <th>Data</th>
+    <th></th>
   </tr>
 
 <% for blog in @blogs %>
@@ -14,7 +15,7 @@
     <td><%=h blog.name %></td>
     <td><%=h @users.find{|item| item.id == blog.user_id}.username %></td>
     <td><%=h blog.dataZalozenia %></td>
-
+    <td><%= link_to 'Przejdz', blog_posts_path(blog.id) %></td>
   </tr>
 <% end %>
 </table>

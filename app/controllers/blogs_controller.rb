@@ -32,24 +32,22 @@ class BlogsController < ApplicationController
         flash[:notice] = 'Blog zostal utworzony.'
         format.html { redirect_to blogs_path  }
         format.xml  { render :xml => @blog, :status => :created, :location => @blog }
-      
       else
-        
         format.html { render :action => "new" }
         format.xml  { render :xml => @blog.errors, :status => :unprocessable_entity }
       end
     end
     
-   end 
-  
+   end
+
+  def show
+    nr_blogu = params[:id]
+    redirect_to blog_posts_path(nr_blogu)
+  end
+
   private
   def blog_params
     params.require(:blog).permit(:dataZalozenia, :name, :status )
   end
-  
-  def show
-    
-  end
-  
-  
+
 end

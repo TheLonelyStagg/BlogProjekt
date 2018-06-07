@@ -1,4 +1,4 @@
-<h1>Utwórz post na blogu -> </h1>
+<h1>Utwórz post na blogu -> <%= @nazwa %></h1>
 
 <%= form_with scope: :post, url: blog_posts_path, local: true do |form| %>
   
