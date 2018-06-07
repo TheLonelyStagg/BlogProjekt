@@ -1,6 +1,7 @@
 class BlogsController < ApplicationController
   def index
     @blogs = Blog.all
+    @users = User.all
     
     respond_to do |format|
       format.html # index.html.erb
@@ -23,6 +24,7 @@ class BlogsController < ApplicationController
     
     @blog = Blog.new(blog_params)
     @blog.update_attribute(:user_id, tmp.id)
+    @blog.update_attribute(:dataZalozenia, Date.today)
     czyok=@blog.save
     
     respond_to do |format|
