@@ -1,22 +1,28 @@
-<h1>Blogi</h1>
+<h1>Posty blogu -> <%= @nazwa %></h1>
 
 <table>
   <tr>
-    <th>Nazwa</th>
-    <th>Wlasciciel</th>
     <th>Data</th>
+    <th>Status</th>
+    <th>ifTop</th>
+    <th>TextContent</th>
+    <th>Img</th>
+
   </tr>
 
 <% for post in @posts %>
   <tr>
-    <td><%=h post. %></td>
-    <td><%=h blog.user_id %></td>
-    <td><%=h blog.dataZalozenia %></td>
-    
+    <td><%=h post.data %></td>
+    <td><%=h post.status %></td>
+    <td><%=h post.ifTop %></td>
+    <td><%=h post.text_content %></td>
+    <td><%=h post.img_route %></td>
+
+
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'Dodaj bloga', new_blog_path %>
+<%= link_to 'Dodaj post', new_blog_post_path %>

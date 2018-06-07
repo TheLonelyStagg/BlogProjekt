@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+    <th>ID</th>
     <th>Nazwa</th>
     <th>Wlasciciel</th>
     <th>Data</th>
@@ -9,6 +10,7 @@
 
 <% for blog in @blogs %>
   <tr>
+    <td><%=h blog.id %></td>
     <td><%=h blog.name %></td>
     <td><%=h @users.find{|item| item.id == blog.user_id}.username %></td>
     <td><%=h blog.dataZalozenia %></td>
