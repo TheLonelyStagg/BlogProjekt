@@ -1,8 +1,9 @@
-<h1>Posty blogu -> <%= @nazwa %></h1>
+<h1>Posty blogu -> <%=h @nazwa %></h1>
 
 <table>
   <tr>
     <th>Data</th>
+    <th>Title</th>
     <th>Status</th>
     <th>ifTop</th>
     <th>TextContent</th>
@@ -13,15 +14,37 @@
 <% for post in @posts %>
   <tr>
     <td><%=h post.data %></td>
+    <td><%=h post.title %></td>
     <td><%=h post.status %></td>
     <td><%=h post.ifTop %></td>
     <td><%=h post.text_content %></td>
     <td><%=h post.img_route %></td>
-
-
   </tr>
 <% end %>
 </table>
+
+<br />
+<div>
+  <% for post in @posts.reverse_order %>
+
+    <div class="container">
+      <a href= "#" >
+        <h2> <%=h (post.title.blank?)? post.text_content.first(5)+"..." : post.title %> </h2>
+      </a>
+
+      <p>
+        <%=h (post.text_content.length>15)? post.text_content.first(15)+"...": post.text_content.first(15) %>
+      </p>
+
+      <p style="font-size: small">
+        Posted on <%=h post.data %>
+      </p>
+
+      <br/>
+    </div>
+  <% end %>
+
+</div>
 
 <br />
 

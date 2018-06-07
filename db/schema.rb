@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_07_142108) do
+ActiveRecord::Schema.define(version: 2018_06_07_201312) do
 
   create_table "admins", force: :cascade do |t|
     t.string "login"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 2018_06_07_142108) do
     t.integer "blog_id"
     t.text "text_content"
     t.string "img_route"
+    t.string "title"
     t.index ["blog_id"], name: "index_posts_on_blog_id"
   end
 
