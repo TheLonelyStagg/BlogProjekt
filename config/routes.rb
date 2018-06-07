@@ -8,8 +8,11 @@ Rails.application.routes.draw do
       resources :comments
     end 
   end
-    
-  
+
+  get    '/login',   to: 'sessions#new'
+  post   '/login',   to: 'sessions#create'
+  get '/logout',  to: 'sessions#destroy'
+  get 'sessions/destroy' => 'sessions#destroy'
   resources :users
   
   resources :admins
