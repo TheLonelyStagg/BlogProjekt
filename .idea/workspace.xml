@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef6c6044-a294-4fec-b3f6-c61f0ae47094" name="Default" comment="">
+
       <change afterPath="$PROJECT_DIR$/app/controllers/kinds_controller.rb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/controllers/tags_controller.rb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/views/kinds/index.html.erb" afterDir="false" />
@@ -12,6 +13,7 @@
       <change beforePath="$PROJECT_DIR$/app/views/blogs/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/blogs/new.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/posts/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/posts/new.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -28,18 +30,23 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/BlogProjekt2@Development__BlogProjekt.rcov" NAME="Development: BlogProjekt Coverage Results" MODIFIED="1528478471908" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="BlogProjekt" />
     <SUITE FILE_PATH="coverage/BlogProjekt2@Production__BlogProjekt.rcov" NAME="Production: BlogProjekt Coverage Results" MODIFIED="1528452020689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="BlogProjekt" />
-    <SUITE FILE_PATH="coverage/BlogProjekt@Development__BlogProjekt.rcov" NAME="Development: BlogProjekt Coverage Results" MODIFIED="1528457914591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="BlogProjekt" />
+    <SUITE FILE_PATH="coverage/BlogProjekt@Development__BlogProjekt.rcov" NAME="Development: BlogProjekt Coverage Results" MODIFIED="1528479725190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="BlogProjekt" />
     <SUITE FILE_PATH="coverage/BlogProjekt2@db_migrate.rcov" NAME="db:migrate Coverage Results" MODIFIED="1528451817423" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="BlogProjekt" />
+
     <SUITE FILE_PATH="coverage/BlogProjekt2@Development__BlogProjekt.rcov" NAME="Development: BlogProjekt Coverage Results" MODIFIED="1528488052005" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="BlogProjekt" />
+
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="posts_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/posts_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="289">
               <caret line="29" column="30" lean-forward="true" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
+
             </state>
           </provider>
         </entry>
@@ -47,6 +54,7 @@
       <file leaf-file-name="blogs_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/blogs_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="289">
               <caret line="37" column="66" lean-forward="true" selection-start-line="37" selection-start-column="66" selection-end-line="37" selection-end-column="66" />
             </state>
@@ -85,6 +93,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="404">
               <caret line="47" column="17" lean-forward="true" selection-start-line="42" selection-start-column="6" selection-end-line="47" selection-end-column="17" />
+
             </state>
           </provider>
         </entry>
@@ -92,6 +101,7 @@
       <file leaf-file-name="new.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/blogs/new.html.erb">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="255">
               <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
             </state>
@@ -117,6 +127,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
               <caret line="9" selection-start-line="9" selection-end-line="9" />
+
             </state>
           </provider>
         </entry>
@@ -151,6 +162,7 @@
         <option value="$PROJECT_DIR$/app/helpers/sessions_helper.rb" />
         <option value="$PROJECT_DIR$/app/controllers/application_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/sessions_controller.rb" />
+
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/db/migrate/20180507163548_create_posts.rb" />
         <option value="$PROJECT_DIR$/app/views/posts/show.html.erb" />
@@ -167,6 +179,7 @@
         <option value="$PROJECT_DIR$/app/views/kinds/index.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/blogs_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/blogs/index.html.erb" />
+
       </list>
     </option>
   </component>
@@ -199,47 +212,35 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="RailsProjectView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="BlogProjekt2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BlogProjekt2" type="462c0819:PsiDirectoryNode" />
+              <item name="BlogProjekt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogProjekt" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="BlogProjekt2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BlogProjekt2" type="462c0819:PsiDirectoryNode" />
+              <item name="BlogProjekt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogProjekt" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="BlogProjekt2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BlogProjekt2" type="462c0819:PsiDirectoryNode" />
+              <item name="BlogProjekt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogProjekt" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="BlogProjekt2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BlogProjekt2" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BlogProjekt2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BlogProjekt2" type="462c0819:PsiDirectoryNode" />
+              <item name="BlogProjekt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogProjekt" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="BlogProjekt2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BlogProjekt2" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="blogs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BlogProjekt2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BlogProjekt2" type="462c0819:PsiDirectoryNode" />
+              <item name="BlogProjekt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogProjekt" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="kinds" type="462c0819:PsiDirectoryNode" />
@@ -252,6 +253,7 @@
               <item name="posts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
+
               <item name="BlogProjekt2" type="b2602c69:ProjectViewProjectNode" />
               <item name="BlogProjekt2" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
@@ -267,12 +269,12 @@
               <item name="BlogProjekt2" type="b2602c69:ProjectViewProjectNode" />
               <item name="BlogProjekt2" type="462c0819:PsiDirectoryNode" />
               <item name="db" type="462c0819:PsiDirectoryNode" />
+
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -417,7 +419,9 @@
       <workItem from="1528451298853" duration="4355000" />
       <workItem from="1528456380056" duration="1020000" />
       <workItem from="1528473656819" duration="5043000" />
+
       <workItem from="1528479244198" duration="3639000" />
+
     </task>
     <task id="LOCAL-00001" summary="WsywietlanieNazwUzytkownikow">
       <created>1528371372122</created>
@@ -454,16 +458,33 @@
       <option name="project" value="LOCAL" />
       <updated>1528472684544</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Updajcik">
+      <created>1528480271722</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1528480271722</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Updajcik">
+      <created>1528480929265</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1528480929265</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
+
     <option name="totallyTimeSpent" value="40784000" />
+
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
+
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19114584" />
       <window_info anchor="bottom" id="TODO" order="7" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
@@ -474,6 +495,7 @@
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.8609375" weight="0.32518598" />
+
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
@@ -489,6 +511,32 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
@@ -498,9 +546,12 @@
     <MESSAGE value="WypisywaniePostowBloguTegoTylko" />
     <MESSAGE value="Validacja zalogowania przy dodwaniu blogow" />
     <MESSAGE value="Dodawanie komentarzy" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dodawanie komentarzy" />
+    <MESSAGE value="Updajcik" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updajcik" />
   </component>
   <component name="editorHistoryManager">
+
+
     <entry file="file://$PROJECT_DIR$/app/views/blogs/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -626,6 +677,7 @@
         </state>
       </provider>
     </entry>
+
     <entry file="file://$PROJECT_DIR$/app/controllers/posts_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="542">
@@ -665,6 +717,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/tags_controller.rb">
+
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="7" lean-forward="true" selection-start-line="1" selection-start-column="2" selection-end-line="7" selection-end-column="7" />
@@ -673,15 +726,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/kinds_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
+
         <state relative-caret-position="119">
           <caret line="7" column="5" lean-forward="true" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/tags/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state>
+
           <caret selection-end-line="16" selection-end-column="6" />
+
         </state>
       </provider>
     </entry>
@@ -695,15 +752,18 @@
         </state>
       </provider>
     </entry>
+
     <entry file="file://$PROJECT_DIR$/app/controllers/posts_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="29" column="30" lean-forward="true" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
+
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/blogs/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
+
         <state relative-caret-position="255">
           <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
         </state>
@@ -720,18 +780,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="6" lean-forward="true" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/posts/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
+
         <state relative-caret-position="374">
           <caret line="22" column="2" lean-forward="true" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="2" />
+
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/posts/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
+
         <state relative-caret-position="404">
           <caret line="47" column="17" lean-forward="true" selection-start-line="42" selection-start-column="6" selection-end-line="47" selection-end-column="17" />
         </state>
@@ -741,6 +805,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="13" lean-forward="true" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+
         </state>
       </provider>
     </entry>

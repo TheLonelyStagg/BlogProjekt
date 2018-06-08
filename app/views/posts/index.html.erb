@@ -28,13 +28,12 @@
   <% for post in @posts.reverse_order %>
 
     <div class="container">
-      <a href="/" >
-        <%= link_to 'Przejdź', :controller => 'posts', :action=>'show', :id => post.id%>
-        <h2> <%=h (post.title.blank?)? post.text_content.first(5)+"..." : post.title %> </h2>
-      </a>
+        <% alt_naglowek_dl = 10%>
+        <h2> <%= link_to (post.title.blank?)? post.text_content.first(alt_naglowek_dl)+"..." : post.title, :controller => 'posts', :action=>'show', :id => post.id%> </h2>
 
       <p>
-        <%=h (post.text_content.length>15)? post.text_content.first(15)+"...": post.text_content.first(15) %>
+        <% limit_dlugosci_podgladu = 15%>
+        <%=h (post.text_content.length>limit_dlugosci_podgladu+1)? post.text_content.first(limit_dlugosci_podgladu)+"...": post.text_content.first(limit_dlugosci_podgladu) %>
       </p>
 
       <p style="font-size: small">

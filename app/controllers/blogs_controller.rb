@@ -10,7 +10,6 @@ class BlogsController < ApplicationController
   end
   
   def new
-
     if(logged_in?)
       @blog = Blog.new
 
@@ -26,10 +25,8 @@ class BlogsController < ApplicationController
   
   def create
 
-    tmp = current_user
-    
     @blog = Blog.new(blog_params)
-    @blog.update_attribute(:user_id, tmp.id)
+    @blog.update_attribute(:user_id, current_user.id)
     @blog.update_attribute(:dataZalozenia, Date.today)
 
     String rodzaje = @blog.rodzajeblogu
