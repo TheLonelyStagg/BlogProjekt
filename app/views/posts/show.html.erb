@@ -1,9 +1,24 @@
-<h1>Blog <%= @post.title %></h1>
 
+<h1>Post -> <%= @post.title %></h1>
+
+<p style="font-size: small">
+  Created on: <%= @post.data %>
+</p>
 <p>
-  <%= @post.blog_id %>
+  <%= @post.text_content %>
 </p>
 
 <br />
+<%= render 'comments/form' %>
 
-<%= link_to 'Dodaj komentarz', new_blog_path %>
+<% for komentarz in @comments.reverse_order %>
+  <div>
+    <p style="font-size: small">
+      Created by: <%= @users.find{|item| item.id == komentarz.user_id}.username %> <%= time_ago_in_words(komentarz.dataiIGodz) %> ago
+    </p>
+    <p>
+      <%= komentarz.content %>
+    </p>
+    <br/>
+  </div>
+<% end %>

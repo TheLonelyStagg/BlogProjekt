@@ -22,4 +22,4 @@
 <br />
 
 
-<%= link_to 'Dodaj bloga', new_blog_path %>
+<%= (logged_in?)?(link_to 'Dodaj bloga'  , new_blog_path): nil %>
