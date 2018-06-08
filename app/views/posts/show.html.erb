@@ -1,5 +1,6 @@
 
 <h1>Post -> <%= @post.title %></h1>
+<%= link_to 'Back', blog_posts_path %>
 
 <p style="font-size: small">
   Created on: <%= @post.data %>
@@ -9,7 +10,14 @@
 </p>
 
 <br />
-<%= render 'comments/form' %>
+
+<h2>Komentarze: </h2>
+<% if (logged_in?) %>
+  <%= render 'comments/form' %>
+<% else %>
+  <%= link_to 'Zaloguj sie aby dodac komentarz', {controller: 'sessions', action: 'new'} %>
+<% end %>
+
 
 <% for komentarz in @comments.reverse_order %>
   <div>
