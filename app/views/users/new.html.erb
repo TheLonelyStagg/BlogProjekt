@@ -32,7 +32,12 @@
     <%= form.label :phoneNumber %><br>
     <%= form.text_field :phoneNumber %>
   </p>
-  
+
+  <p>
+    <%= form.label :is_admin %><br>
+    <%= form.check_box :is_admin %>
+  </p>
+
   <p>
     <%= form.submit "Create" %>
   </p>

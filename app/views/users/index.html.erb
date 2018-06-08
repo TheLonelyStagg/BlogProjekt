@@ -8,6 +8,7 @@
     <th>Nazwisko</th>
     <th>Mail</th>
     <th>Numer</th>
+    <th>IsAdmin</th>
   </tr>
 
 <% for u in @users %>
@@ -18,6 +19,7 @@
     <td><%=h u.surname %></td>
     <td><%=h u.email %></td>
     <td><%=h u.phoneNumber %></td>
+    <td><%=h (u.is_admin)? "owwYeah" : "nope" %></td>
     
   </tr>
 <% end %>

@@ -23,9 +23,14 @@
   <div>
     <p style="font-size: small">
       Created by: <%= @users.find{|item| item.id == komentarz.user_id}.username %> <%= time_ago_in_words(komentarz.dataiIGodz) %> ago
+      <% if(logged_in? && (current_user.id == @post.blog.user.id || current_user.id == komentarz.user.id || current_user.is_admin )) %>
+        | <a style="font-size: small"><%= link_to 'Usun', [komentarz.post.blog, komentarz.post, komentarz], method: :delete, data: {confirm: 'Czy aby na pewno?'} %></a>
+      <% end %>
     </p>
+
     <p>
       <%= komentarz.content %>
+
     </p>
     <br/>
   </div>

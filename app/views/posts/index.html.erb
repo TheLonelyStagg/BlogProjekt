@@ -39,12 +39,11 @@
       <p style="font-size: small">
         Posted on <%=h post.data %>
       </p>
-      <% for tags in post.tags %>
-        <p>
-          <%=h tags.tagName %>
-        </p>
-
+      <p style="font-size: small">
+        <% for tags in post.tags %>
+          <%=h tags.tagName+' ' %>
         <% end %>
+      </p>
 
       <br/>
     </div>
