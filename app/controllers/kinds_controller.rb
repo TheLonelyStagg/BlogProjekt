@@ -6,4 +6,10 @@ class KindsController < ApplicationController
       format.xml {render :xml =>@rodzaje}
     end
   end
+
+  def destroy
+    Kind.find(params[:id]).destroy
+    flash[:success] = "Rodzaj usunięto"
+    redirect_to kinds_path
+  end
 end

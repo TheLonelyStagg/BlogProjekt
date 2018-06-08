@@ -5,12 +5,14 @@
     <th>ID</th>
     <th>Nazwa</th>
     <th></th>
+    <th></th>
   </tr>
 
   <% for kinds in @rodzaje %>
     <tr>
       <td><%=kinds.id %></td>
       <td><%=kinds.kindName %></td>
+      <td><%= link_to "Usun", kinds, :method=>:delete, :class=>:destroy %></td>
     </tr>
   <% end %>
 </table>
