@@ -24,6 +24,18 @@ class PostsController < ApplicationController
     @post.update_attribute(:blog_id, params[:blog_id])
     @post.update_attribute(:data, Date.today)
     @post.update_attribute(:ifTop, false)
+    String tagi = @post.tagipostu
+    tagpom =tagi.split(",")
+    tagpom.each do |name|
+      @nowytag = Tag.where(tagName: name).first_or_initialize
+      if @nowytag.save
+      end
+      @tymczasowytag = Tag.where(tagName: name).first!
+      @posttags = PostTag.new
+      @posttags.update_attribute(:post_id, @post.id)
+      @posttags.update_attribute(:tag_id, @tymczasowytag.id)
+      @posttags.save
+    end
     czy_ok = @post.save
 
     respond_to do |format|
@@ -48,7 +60,7 @@ class PostsController < ApplicationController
   
   private 
   def post_params
-    params.require(:post).permit(:data, :ifTop, :status, :text_content, :img_route, :title)
+    params.require(:post).permit(:data, :ifTop, :status, :text_content, :img_route, :title, :tagipostu)
   end
 
 end
