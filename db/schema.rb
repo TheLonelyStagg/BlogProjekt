@@ -10,15 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_07_201312) do
-
-  create_table "admins", force: :cascade do |t|
-    t.string "login"
-    t.string "password"
-    t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 2018_06_08_210254) do
 
   create_table "blog_kinds", force: :cascade do |t|
     t.integer "blog_id"
@@ -94,6 +86,7 @@ ActiveRecord::Schema.define(version: 2018_06_07_201312) do
     t.integer "phoneNumber"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_admin"
   end
 
 end
