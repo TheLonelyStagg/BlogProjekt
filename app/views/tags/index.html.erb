@@ -4,7 +4,7 @@
   <tr>
     <th>ID</th>
     <th>Nazwa</th>
-    <th></th>
+    <th>Ilosc w PostTag</th>
     <th></th>
   </tr>
 
@@ -12,6 +12,7 @@
     <tr>
       <td><%=tags.id %></td>
       <td><%=tags.tagName %></td>
+      <td><%= PostTag.where('tag_id = ?', tags.id).count %></td>
       <td><%= link_to "Usun", tags, :method=>:delete, :class=>:destroy %></td>
     </tr>
   <% end %>

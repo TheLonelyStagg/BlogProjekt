@@ -62,7 +62,21 @@ class PostsController < ApplicationController
         format.html # show.html.erb
         format.xml {render :xml => @post}
       end
+  end
+
+  def destroy
+    @blog = Blog.find params[:blog_id]
+    @post = Post.find params[:id]
+
+    if(logged_in? && (current_user.id == @post.blog.user.id ||  current_user.is_admin ))
+      czy_ok = @post.destroy
+      if czy_ok
+        flash[:notice] = 'Post usuniety.'
+
+      end
     end
+    redirect_to blog_posts_path(params[:blog_id])
+  end
   
   private 
   def post_params
