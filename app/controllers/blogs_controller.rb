@@ -47,8 +47,7 @@ class BlogsController < ApplicationController
    end
 
   def show
-    nr_blogu = params[:id]
-    redirect_to blog_posts_path(nr_blogu)
+    redirect_to blog_posts_path(params[:id])
   end
 
   private

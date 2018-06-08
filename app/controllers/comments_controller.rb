@@ -2,8 +2,8 @@ class CommentsController < ApplicationController
 
   def create
     @post = Post.find params[:post_id]
-    @comment = Comment.new(comment_params)
-    @comment.update_attribute(:post_id, @post.id)
+    @comment = @post.comments.new(comment_params)
+
     @comment.update_attribute(:dataiIGodz, DateTime.now)
     if(logged_in?)
       @comment.update_attribute(:user_id, current_user.id )
