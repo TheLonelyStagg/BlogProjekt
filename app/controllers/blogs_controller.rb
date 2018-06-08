@@ -31,6 +31,19 @@ class BlogsController < ApplicationController
     @blog = Blog.new(blog_params)
     @blog.update_attribute(:user_id, tmp.id)
     @blog.update_attribute(:dataZalozenia, Date.today)
+
+    String rodzaje = @blog.rodzajeblogu
+    rodzajepom =rodzaje.split(",")
+    rodzajepom.each do |name|
+      @nowyrodzaj = Kind.where(kindName: name).first_or_initialize
+      if @nowyrodzaj.save
+      end
+      @tymczasowyrodzaj = Kind.where(kindName: name).first!
+      @blogrodzaje = BlogKind.new
+      @blogrodzaje.update_attribute(:blog_id, @blog.id)
+      @blogrodzaje.update_attribute(:kind_id, @tymczasowyrodzaj.id)
+      @blogrodzaje.save
+    end
     czyok=@blog.save
     
     respond_to do |format|
@@ -52,7 +65,7 @@ class BlogsController < ApplicationController
 
   private
   def blog_params
-    params.require(:blog).permit(:dataZalozenia, :name, :status )
+    params.require(:blog).permit(:dataZalozenia, :name, :status, :rodzajeblogu )
   end
 
 end

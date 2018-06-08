@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'sessions/destroy' => 'sessions#destroy'
   resources :users
   resources :tags
+  resources :kinds
   
   resources :admins
   
