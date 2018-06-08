@@ -5,12 +5,14 @@
     <th>ID</th>
     <th>Nazwa</th>
     <th></th>
+    <th></th>
   </tr>
 
   <% for tags in @tags %>
     <tr>
       <td><%=tags.id %></td>
       <td><%=tags.tagName %></td>
+      <td><%= link_to "Usun", tags, :method=>:delete, :class=>:destroy %></td>
     </tr>
   <% end %>
 </table>
