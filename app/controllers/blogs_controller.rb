@@ -10,17 +10,23 @@ class BlogsController < ApplicationController
   end
   
   def new
-    @blog = Blog.new
-    
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml {render :xml => @blog}
+
+    if(logged_in?)
+      @blog = Blog.new
+
+      respond_to do |format|
+        format.html # new.html.erb
+        format.xml {render :xml => @blog}
+      end
+    else
+      redirect_to :controller =>'sessions', :action=>'new'
     end
+
   end
   
   def create
-    
-    tmp = User.last
+
+    tmp = current_user
     
     @blog = Blog.new(blog_params)
     @blog.update_attribute(:user_id, tmp.id)
