@@ -28,7 +28,8 @@
   <% for post in @posts.reverse_order %>
 
     <div class="container">
-      <a href= "#" >
+      <a href="/" >
+        <%= link_to 'Przejdź', :controller => 'posts', :action=>'show', :id => post.id%>
         <h2> <%=h (post.title.blank?)? post.text_content.first(5)+"..." : post.title %> </h2>
       </a>
 
