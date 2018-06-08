@@ -1,0 +1,17 @@
+<h1>Rodzaje</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Nazwa</th>
+    <th></th>
+  </tr>
+
+  <% for kinds in @rodzaje %>
+    <tr>
+      <td><%=kinds.id %></td>
+      <td><%=kinds.kindName %></td>
+    </tr>
+  <% end %>
+</table>
+<br />
