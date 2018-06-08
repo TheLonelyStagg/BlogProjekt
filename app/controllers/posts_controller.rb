@@ -51,7 +51,13 @@ class PostsController < ApplicationController
   end
 
   def show
+      @blog = Blog.find params[:blog_id]
       @post = Post.find params[:id]
+      @comment = @post.comments.new
+      @comments = Comment.where("post_id = ?", params[:id])
+      @users = User.all
+
+
       respond_to do |format|
         format.html # show.html.erb
         format.xml {render :xml => @post}

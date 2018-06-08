@@ -1,0 +1,11 @@
+<%= form_for [@blog,@post,@comment] do |form| %>
+
+  <p>
+    <%= form.label :content %><br />
+    <%= form.text_field :content %>
+  </p>
+
+  <p>
+    <%= form.submit "Create" %>
+  </p>
+<% end %>
