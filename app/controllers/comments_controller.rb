@@ -30,8 +30,19 @@ class CommentsController < ApplicationController
     redirect_to blog_post_path(params[:blog_id],@post.id)
   end
 
+  def upvote
+    @user = current_user
+    @comment = Comment.find params[:comment]
+    if @user.voted_on? @comment
+      @comment.unvote_by @user
+    else
+      @comment.vote_by :voter => @user
+    end
+    redirect_back  fallback_location: root_path
+  end
+
   private
   def comment_params
-    params.require(:comment).permit(:dataiIGodz, :upVote, :content)
+    params.require(:comment).permit(:dataiIGodz, :upVote, :content, :comment)
   end
 end

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :blogs do
     resources :posts do
       resources :comments
+
     end 
   end
 
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   get '/logout',  to: 'sessions#destroy'
   get 'sessions/destroy' => 'sessions#destroy'
+  get 'comments/upvote' => 'comments#upvote'
   resources :users
   resources :tags
   resources :kinds
