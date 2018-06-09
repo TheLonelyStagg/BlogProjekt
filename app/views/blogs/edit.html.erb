@@ -1,0 +1,21 @@
+<h1>Edytuj blog</h1>
+
+<%= form_for(@blog) do |form| %>
+
+
+  <p>
+    <%= form.label :name %><br />
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :rodzajeblogu %> <br/>
+    <%= form.text_field :rodzajeblogu %>
+  </p>
+
+  <p>
+    <%= form.submit "Potwierdz" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', blogs_path %>

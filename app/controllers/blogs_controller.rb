@@ -2,59 +2,102 @@ class BlogsController < ApplicationController
   def index
     @blogs = Blog.all
     @users = User.all
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml {render :xml => @blogs}
-    end
   end
   
   def new
     if(logged_in?)
       @blog = Blog.new
+    else
+      redirect_to :controller =>'sessions', :action=>'new'
+    end
+  end
+  
+  def create
 
-      respond_to do |format|
-        format.html # new.html.erb
-        format.xml {render :xml => @blog}
+    if(logged_in?)
+
+      @blog = Blog.new(blog_params)
+      @blog.update_attribute(:user_id, current_user.id)
+      @blog.update_attribute(:dataZalozenia, Date.today)
+
+      String rodzaje = @blog.rodzajeblogu
+      rodzajepom =rodzaje.split(',')
+      rodzajepom.each do |name|
+        @nowyrodzaj = Kind.where(kindName: name.strip).first_or_initialize
+        if @nowyrodzaj.save
+        end
+        @tymczasowyrodzaj = Kind.where(kindName: name.strip).first!
+        @blogrodzaje = BlogKind.new
+        @blogrodzaje.update_attribute(:blog_id, @blog.id)
+        @blogrodzaje.update_attribute(:kind_id, @tymczasowyrodzaj.id)
+        @blogrodzaje.save
+      end
+
+      if @blog.save
+        flash[:success] = 'Blog zostal utworzony.'
+        redirect_to blogs_path
+      else
+        render :action => 'new'
       end
     else
       redirect_to :controller =>'sessions', :action=>'new'
     end
 
   end
-  
-  def create
 
-    @blog = Blog.new(blog_params)
-    @blog.update_attribute(:user_id, current_user.id)
-    @blog.update_attribute(:dataZalozenia, Date.today)
+  def edit
+    if(logged_in?)
 
-    String rodzaje = @blog.rodzajeblogu
-    rodzajepom =rodzaje.split(",")
-    rodzajepom.each do |name|
-      @nowyrodzaj = Kind.where(kindName: name).first_or_initialize
-      if @nowyrodzaj.save
+      @blog = Blog.find(params[:id])
+
+      @blog.rodzajeblogu = ''
+
+      ifpierwszy = true
+
+      @blog.kinds.each do |rodzaj|
+        if (ifpierwszy)
+          @blog.rodzajeblogu = rodzaj.kindName
+          ifpierwszy = false
+        else
+          @blog.rodzajeblogu << ", "+rodzaj.kindName
+        end
       end
-      @tymczasowyrodzaj = Kind.where(kindName: name).first!
-      @blogrodzaje = BlogKind.new
-      @blogrodzaje.update_attribute(:blog_id, @blog.id)
-      @blogrodzaje.update_attribute(:kind_id, @tymczasowyrodzaj.id)
-      @blogrodzaje.save
+
+    else
+      redirect_to :controller =>'sessions', :action=>'new'
     end
-    czyok=@blog.save
-    
-    respond_to do |format|
-      if czyok
-        flash[:notice] = 'Blog zostal utworzony.'
-        format.html { redirect_to blogs_path  }
-        format.xml  { render :xml => @blog, :status => :created, :location => @blog }
+  end
+
+  def update
+
+
+    @blog = Blog.find(params[:id])
+    if(logged_in?)
+
+      rodzaje = params[:blog][:rodzajeblogu]
+
+
+      rodzajepom =rodzaje.split(',')
+      rodzajepom.each do |name|
+        @nowyrodzaj = Kind.where(kindName: name.strip).first_or_initialize
+        if @nowyrodzaj.save
+        end
+        @tymczasowyrodzaj = Kind.where(kindName: name.strip).first!
+        @blogrodzaje = BlogKind.where(blog_id: @blog.id, kind_id: @tymczasowyrodzaj.id).first_or_initialize
+        @blogrodzaje.save
+      end
+
+      if @blog.update_attributes(blog_params)
+        flash[:success] = 'Blog zostal zupdateowany.'
+        redirect_to blogs_path
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @blog.errors, :status => :unprocessable_entity }
+        render :action => 'new'
       end
+    else
+      redirect_to :controller =>'sessions', :action=>'new'
     end
-    
-   end
+
+  end
 
   def show
     redirect_to blog_posts_path(params[:id])

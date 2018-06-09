@@ -4,7 +4,7 @@
   <tr>
     <th>ID</th>
     <th>Nazwa</th>
-    <th></th>
+    <th>Ilosc w KindBlog</th>
     <th></th>
   </tr>
 
@@ -12,6 +12,7 @@
     <tr>
       <td><%=kinds.id %></td>
       <td><%=kinds.kindName %></td>
+      <td><%= BlogKind.where('kind_id = ?', kinds.id).count %></td>
       <td><%= link_to "Usun", kinds, :method=>:delete, :class=>:destroy %></td>
     </tr>
   <% end %>

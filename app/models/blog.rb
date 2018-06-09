@@ -6,4 +6,5 @@ class Blog < ApplicationRecord
   has_many :kinds, through: :blog_kinds
 
   attr_accessor :rodzajeblogu
+
 end
