@@ -46,9 +46,9 @@ class BlogsController < ApplicationController
   end
 
   def edit
-    if(logged_in?)
+    @blog = Blog.find(params[:id])
 
-      @blog = Blog.find(params[:id])
+    if(logged_in? && (current_user.id == @blog.user.id ||  current_user.is_admin ))
 
       @blog.rodzajeblogu = ''
 
@@ -72,7 +72,7 @@ class BlogsController < ApplicationController
 
 
     @blog = Blog.find(params[:id])
-    if(logged_in?)
+    if(logged_in? && (current_user.id == @blog.user.id ||  current_user.is_admin ))
 
       rodzaje = params[:blog][:rodzajeblogu]
 
@@ -101,6 +101,19 @@ class BlogsController < ApplicationController
 
   def show
     redirect_to blog_posts_path(params[:id])
+  end
+
+  def destroy
+    @blog = Blog.find(params[:id])
+
+    if(logged_in? && (current_user.id == @blog.user.id ||  current_user.is_admin ))
+      czy_ok = @blog.destroy
+      if czy_ok
+        flash[:notice] = 'Blog usuniety.'
+
+      end
+    end
+    redirect_to blogs_path
   end
 
   private
