@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   resources :tags
   resources :kinds
   get 'kinds/show' => 'kinds#show'
+  get 'tags/show' => 'tags#show'
+  get '/bytags' => 'posts#bytags'
   resources :admins
   
   

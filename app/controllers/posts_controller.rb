@@ -77,6 +77,20 @@ class PostsController < ApplicationController
     end
     redirect_to blog_posts_path(params[:blog_id])
   end
+
+  def bytags
+    @posts = Post.all
+    tagid = params[:tag].to_i
+    @array = []
+    @posts.each do |p|
+      p.tags.each do |tags|
+        if tags.id.equal?(tagid)
+          @array.push(p)
+          break
+        end
+      end
+    end
+  end
   
   private 
   def post_params
