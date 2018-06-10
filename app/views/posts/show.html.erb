@@ -30,10 +30,20 @@
 
     <p>
       <%= komentarz.content %>
-      <%= komentarz.cached_votes_up %>
+
+      <% btnclass = "btn btn-outline-primary btn-sm disabled"%>
+      <% btnactive = (logged_in?)? "false" : "true" %>
       <% if(logged_in? ) %>
-      <%= link_to "Upvote", :action => 'upvote',:controller => 'comments',:comment => komentarz.id, method: :put %>
+        <% btnclass = (current_user.voted_for? komentarz)? "btn btn-primary btn-sm" : "btn btn-outline-primary btn-sm"%>
       <% end %>
+
+      <% urlhrefa = url_for(:action => 'upvote',:controller => 'comments',:comment => komentarz.id, method: :put) %>
+
+      <a href="<%= urlhrefa %>" class="<%= btnclass %>" role="button" aria-disabled="<%= btnactive %>">
+        upVote <span class="badge badge-light"><%= komentarz.cached_votes_up %></span>
+      </a>
+
+
     </p>
     <br/>
   </div>

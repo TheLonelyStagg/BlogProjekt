@@ -56,6 +56,7 @@ class PostsController < ApplicationController
       @comment = @post.comments.new
       @comments = Comment.where("post_id = ?", params[:id])
       @users = User.all
+
   end
 
   def destroy
