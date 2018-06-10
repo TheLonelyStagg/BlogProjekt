@@ -21,7 +21,7 @@
       <% if logged_in? %>
        <li class="nav-link">Witaj <%= current_user.username %></li>
         <%= link_to :controller => 'sessions', :action=>'destroy' do %>
-          <li class="nav-link" style="text-decoration:none">Wyloguj</li>
+          <li class="nav-link" style="text-decoration:none !important;">Wyloguj</li>
         <%end %>
       <% else %>
         <%= link_to :controller => 'sessions', :action=>'new' do %>
