@@ -199,18 +199,20 @@ PLATFORMS
 DEPENDENCIES
   acts_as_votable (~> 0.11.1)
   bootsnap (>= 1.1.0)
-  bootstrap
+  bootstrap (~> 4.1.1)
   byebug
   capybara (>= 2.15, < 4.0)
   chromedriver-helper
   coffee-rails (~> 4.2)
   duktape
+  execjs
   jbuilder (~> 2.5)
   jquery-rails
   puma (~> 3.11)
   rails (~> 5.2.0)
   sass-rails (~> 5.0)
   selenium-webdriver
+  sprockets-rails
   sqlite3
   turbolinks (~> 5)
   tzinfo-data
