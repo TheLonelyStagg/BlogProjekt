@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     end 
   end
 
+  get '/bycategory' => 'blogs#bycategory', :as => :category_show
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   get '/logout',  to: 'sessions#destroy'
@@ -20,7 +21,7 @@ Rails.application.routes.draw do
   resources :users
   resources :tags
   resources :kinds
-  
+  get 'kinds/show' => 'kinds#show'
   resources :admins
   
   

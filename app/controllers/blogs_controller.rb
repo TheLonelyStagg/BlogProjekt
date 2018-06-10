@@ -103,6 +103,21 @@ class BlogsController < ApplicationController
     redirect_to blog_posts_path(params[:id])
   end
 
+  def bycategory
+    @blog = Blog.all
+    @users = User.all
+    cat_id = params[:category].to_i
+    @array = []
+    @blog.each do |p|
+      p.kinds.each do |dif|
+        if dif.id.eql?(cat_id)
+          @array.push(p)
+          break
+        end
+      end
+    end
+  end
+
   private
   def blog_params
     params.require(:blog).permit(:dataZalozenia, :name, :status, :rodzajeblogu )
