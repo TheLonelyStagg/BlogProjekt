@@ -1,30 +1,43 @@
-<h1>Blogi</h1>
-<% for blog in @blogs %>
-  <div class="card">
-    <div class="card-body">
-      <h4 class="card-title"><%=h blog.name %></h4>
-      <p class="card-text">Możeby tak zrobić jakiś krótki opis bloga</p>
-      <p class="card-text">Stworzony przez <%=h @users.find{|item| item.id == blog.user_id}.username %></p>
+<div class="container">
+  <div class="col">
 
-      <%= link_to blog_posts_path(blog.id) do %>
-        <span class="card-link">Przejdz</span>
-      <% end %>
-
-      <% if(logged_in? && (current_user.id == blog.user.id ||  current_user.is_admin )) %>
-
-        <%= link_to edit_blog_path(blog.id) do %>
-          <span class="card-link">Edytuj</span>
-        <% end %>
-
-        <%= link_to blog_path(blog),
-                    method: :delete,
-                    data: { confirm: 'Are you sure?' } do %>
-          <span class="card-link">Usuń</span>
-        <% end %>
-
-      <% end %>
-
-    </div>
   </div>
-<% end %>
-<%= (logged_in?)?(link_to 'Dodaj bloga'  , new_blog_path): nil %>
+  <div class="col-12">
+      <div class="row">
+        <h1 style="text-algin:center">Blogi</h1>
+      </div>
+    <% for blog in @blogs %>
+      <div class="card" style="margin:4px">
+        <div class="card-body">
+          <h4 class="card-title"><%=h blog.name %></h4>
+          <p class="card-text">Możeby tak zrobić jakiś krótki opis bloga</p>
+          <p class="card-text">Stworzony przez <%=h @users.find{|item| item.id == blog.user_id}.username %></p>
+
+          <%= link_to blog_posts_path(blog.id) do %>
+            <span class="card-link">Przejdz</span>
+          <% end %>
+
+          <% if(logged_in? && (current_user.id == blog.user.id ||  current_user.is_admin )) %>
+
+            <%= link_to edit_blog_path(blog.id) do %>
+              <span class="card-link">Edytuj</span>
+            <% end %>
+
+            <%= link_to blog_path(blog),
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' } do %>
+              <span class="card-link">Usuń</span>
+            <% end %>
+
+          <% end %>
+
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+  <div class="col">
+    <%= (logged_in?)?(link_to 'Dodaj bloga'  , new_blog_path): nil %>
+  </div>
+</div>
+
