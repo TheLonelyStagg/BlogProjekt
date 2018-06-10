@@ -13,7 +13,8 @@
       <td><%=tags.id %></td>
       <td><%=tags.tagName %></td>
       <td><%= PostTag.where('tag_id = ?', tags.id).count %></td>
-      <td><%= link_to "Usun", tags, :method=>:delete, :class=>:destroy %></td>
+      <td><%= link_to "Usun ", tags, :method=>:delete, :class=>:destroy %></td>
+      <td><%= link_to "Pokaż posty z tagiem", :controller => 'tags', :action =>'show', :param => tags.id %></td>
     </tr>
   <% end %>
 </table>

@@ -1,0 +1,27 @@
+<h1>Blogi</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Nazwa</th>
+    <th>Wlasciciel</th>
+    <th>Data</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% for blog in @array %>
+    <tr>
+      <td><%=h blog.id %></td>
+      <td><%=h blog.name %></td>
+      <td><%=h @users.find{|item| item.id == blog.user_id}.username %></td>
+      <td><%=h blog.dataZalozenia %></td>
+      <td><%= link_to 'Przejdz', blog_posts_path(blog.id) %></td>
+      <td><%= link_to 'Edit', edit_blog_path(blog.id) %></td>
+    </tr>
+  <% end %>
+</table>
+<br />
+
+
+<%= (logged_in?)?(link_to 'Dodaj bloga'  , new_blog_path): nil %>

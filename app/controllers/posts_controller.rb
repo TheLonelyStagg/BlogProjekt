@@ -72,6 +72,20 @@ class PostsController < ApplicationController
     redirect_to blog_posts_path(params[:blog_id])
   end
 
+
+  def bytags
+    @posts = Post.all
+    tagid = params[:tag].to_i
+    @array = []
+    @posts.each do |p|
+      p.tags.each do |tags|
+        if tags.id.equal?(tagid)
+          @array.push(p)
+          break
+        end
+      end
+    end
+
   def edit
     @nazwa = Blog.where("id = ?", params[:blog_id]).first.name
 
@@ -127,6 +141,7 @@ class PostsController < ApplicationController
     else
       redirect_to blog_posts_path(params[:blog_id])
     end
+
 
   end
   

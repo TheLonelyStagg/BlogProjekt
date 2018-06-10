@@ -12,4 +12,9 @@ class KindsController < ApplicationController
     flash[:success] = "Rodzaj usunięto"
     redirect_to kinds_path
   end
+  def show
+    String pom = params[:param]
+    redirect_to :controller => 'blogs', :action =>'bycategory', :category => pom
+  end
+
 end

@@ -30,7 +30,8 @@
 
     <p>
       <%= komentarz.content %>
-
+      <%= komentarz.votes_up %>
+      <%= link_to "Upvote", :action => 'upvote',:controller => 'comments',:comment => komentarz.id, method: :put %>
     </p>
     <br/>
   </div>

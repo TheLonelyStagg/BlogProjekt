@@ -103,6 +103,21 @@ class BlogsController < ApplicationController
     redirect_to blog_posts_path(params[:id])
   end
 
+
+  def bycategory
+    @blog = Blog.all
+    @users = User.all
+    cat_id = params[:category].to_i
+    @array = []
+    @blog.each do |p|
+      p.kinds.each do |dif|
+        if dif.id.eql?(cat_id)
+          @array.push(p)
+          break
+        end
+      end
+    end
+
   def destroy
     @blog = Blog.find(params[:id])
 
@@ -114,6 +129,7 @@ class BlogsController < ApplicationController
       end
     end
     redirect_to blogs_path
+
   end
 
   private

@@ -12,4 +12,9 @@ class TagsController < ApplicationController
     flash[:success] = "Tag usunięto"
     redirect_to tags_path
   end
+
+  def show
+    String pom = params[:param]
+    redirect_to :controller => 'posts', :action =>'bytags', :tag => pom
+  end
 end

@@ -10,34 +10,10 @@
   </head>
 
   <body>
-  	<div>
+      <%= render 'layouts/header' %>
 
-      <div style="display:inline-block">
-        <h1>ProjektBlogi</h1>
+      <div style="background-color:lightblue">
+        <%= yield %>
       </div>
-      <div style="display:inline-block; float:right">
-        <% if logged_in? %>
-          <div>
-            Witaj Anon <%= current_user.username %>
-            <%= link_to 'Wyloguj', :controller => 'sessions', :action=>'destroy' %>
-          </div>
-        <% else %>
-          <div>
-            <%= link_to 'Zaloguj', :controller =>'sessions', :action=>'new' %>
-          </div>
-        <%end%>
-      </div>
-
-
-
-
-
-  	</div>
-
-  	
-  	<div style="background-color:lightblue">
-  		<%= yield %>
-  	</div>
-    
   </body>
 </html>
