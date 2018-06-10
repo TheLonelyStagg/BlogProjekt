@@ -94,13 +94,13 @@ class PostsController < ApplicationController
       tagi = params[:post][:tagipostu]
 
 
-      tagpom =rodzaje.split(',')
+      tagpom =tagi.split(',')
       tagpom.each do |name|
         @nowytag = Tag.where(tagName: name.strip).first_or_initialize
         if @nowytag.save
         end
-        @tymczasowytag = Tag.where(tagName: name.strip).first!
-        @posttags = PostTag.where(post_id: @post.id, tag_id: @tymczasowytag.id).first_or_initialize
+        @tymczasowytag = Tag.where(tagName: name.strip).first
+        @posttags = PostTag.where("post_id = ? and tag_id = ?",params[:id],@tymczasowytag.id).first_or_initialize
         @posttags.save
       end
 

@@ -1,6 +1,6 @@
 <h1>Edytuj post na blogu -> <%= @nazwa %></h1>
 
-<%= form_with scope: :post, url: blog_posts_path, local: true do |form| %>
+<%= form_for([@post.blog,@post]) do |form| %>
 
 
   <p>
