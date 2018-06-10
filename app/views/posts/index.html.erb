@@ -40,11 +40,12 @@
         Posted on <%=h post.data %>
         <% if(logged_in? && (current_user.id == post.blog.user.id || current_user.is_admin )) %>
           | <a style="font-size: small"><%= link_to 'Usun', [post.blog, post], method: :delete, data: {confirm: 'Czy aby na pewno?'} %></a>
+          | <a style="font-size: small"><%= link_to 'Edytuj', edit_blog_post_path(blog_id: post.blog.id, id: post.id)  %></a>
         <% end %>
       </p>
       <p style="font-size: small">
         <% for tags in post.tags %>
-          <%=h '#'+tags.tagName+' ' %>
+          <%=h tags.tagName+' ' %>
         <% end %>
       </p>
 
@@ -55,5 +56,6 @@
 </div>
 
 <br />
-
-<%= link_to 'Dodaj post', new_blog_post_path %>
+<% if(logged_in? && (current_user.id == @blog.user.id || current_user.is_admin )) %>
+  <%= link_to 'Dodaj post', new_blog_post_path %>
+<% end %>
