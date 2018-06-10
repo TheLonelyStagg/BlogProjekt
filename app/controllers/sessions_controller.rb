@@ -26,4 +26,26 @@ class SessionsController < ApplicationController
     log_out
     redirect_back fallback_location: root_path
   end
+
+
+  def new_account
+    @user = User.new
+  end
+
+  def create_account
+    @user = User.new(user_params)
+    @user.update_attribute(:is_admin, false)
+
+    if @user.save
+      flash[:notice] = 'User zostal utworzony.'
+      redirect_to login_path
+    else
+      render :action => "new_account"
+    end
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:username, :password, :name, :surname, :email, :phoneNumber)
+  end
 end

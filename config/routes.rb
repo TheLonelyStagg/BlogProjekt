@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get '/bycategory' => 'blogs#bycategory', :as => :category_show
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
+  get    '/register',   to: 'sessions#new_account'
+  post   '/register',   to: 'sessions#create_account'
   get '/logout',  to: 'sessions#destroy'
   get 'sessions/destroy' => 'sessions#destroy'
   get 'comments/upvote' => 'comments#upvote'
@@ -24,7 +26,7 @@ Rails.application.routes.draw do
   get 'kinds/show' => 'kinds#show'
   get 'tags/show' => 'tags#show'
   get '/bytags' => 'posts#bytags'
-  resources :admins
+
   
   
   root 'public#home'
