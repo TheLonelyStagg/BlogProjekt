@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
   def upvote
     @user = current_user
     @comment = Comment.find params[:comment]
-    if @user.voted_on? @comment
+    if @user.voted_for? @comment
       @comment.unvote_by @user
     else
       @comment.vote_by :voter => @user

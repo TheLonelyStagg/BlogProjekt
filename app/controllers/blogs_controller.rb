@@ -117,6 +117,7 @@ class BlogsController < ApplicationController
         end
       end
     end
+  end
 
   def destroy
     @blog = Blog.find(params[:id])

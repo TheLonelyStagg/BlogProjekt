@@ -85,6 +85,7 @@ class PostsController < ApplicationController
         end
       end
     end
+    end
 
   def edit
     @nazwa = Blog.where("id = ?", params[:blog_id]).first.name

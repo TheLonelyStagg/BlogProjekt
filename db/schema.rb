@@ -33,15 +33,16 @@ ActiveRecord::Schema.define(version: 2018_06_09_170725) do
 
   create_table "comments", force: :cascade do |t|
     t.datetime "dataiIGodz"
+    t.integer "upVote"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "post_id"
     t.integer "user_id"
     t.text "content"
-    t.integer "votes_total", default: 0
-    t.integer "votes_score", default: 0
-    t.integer "votes_up", default: 0
-    t.integer "votes_down", default: 0
+    t.integer "cached_votes_total", default: 0
+    t.integer "cached_votes_score", default: 0
+    t.integer "cached_votes_up", default: 0
+    t.integer "cached_votes_down", default: 0
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end

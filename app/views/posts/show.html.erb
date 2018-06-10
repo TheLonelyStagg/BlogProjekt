@@ -30,8 +30,10 @@
 
     <p>
       <%= komentarz.content %>
-      <%= komentarz.votes_up %>
+      <%= komentarz.cached_votes_up %>
+      <% if(logged_in? ) %>
       <%= link_to "Upvote", :action => 'upvote',:controller => 'comments',:comment => komentarz.id, method: :put %>
+      <% end %>
     </p>
     <br/>
   </div>

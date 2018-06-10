@@ -20,18 +20,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    respond_to do |format|
-      if @user.save
-        flash[:notice] = 'User zostal utworzony.'
-        format.html { redirect_to users_path }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
-      
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
+    if @user.save
+      flash[:notice] = 'User zostal utworzony.'
+       redirect_to users_path
+    else
+       render :action => "new"
     end
-    
+
    end 
   
   private
