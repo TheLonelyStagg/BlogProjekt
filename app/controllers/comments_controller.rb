@@ -9,10 +9,13 @@ class CommentsController < ApplicationController
       @comment.update_attribute(:upVote, 0 )
       czy_ok = @comment.save
       if czy_ok
-        flash[:notice] = 'Komentarz zostal dodany.'
+        flash[:success] = 'Komentarz został dodany.'
+      else
+        flash[:error] = 'Bląd podczas dodawania komentarza.'
       end
       redirect_to blog_post_path(params[:blog_id],@post.id)
     else
+      flash[:alert] = 'W celu dodania komentarza należy się zalogować.'
       redirect_to blog_post_path(params[:blog_id],@post.id)
     end
 
@@ -24,8 +27,12 @@ class CommentsController < ApplicationController
     if(logged_in? && (current_user.id == @post.blog.user.id || current_user.id == @comment.user.id || current_user.is_admin ))
       czy_ok = @comment.destroy
       if czy_ok
-        flash[:notice] = 'Komentarz usuniety.'
+        flash[:success] = 'Komentarz usunięto z powodzeniem.'
+      else
+        flash[:error] = 'Błąd podczas usuwania komentarza.'
       end
+    else
+      flash[:alert] = 'Brak odpowiednich kwalifikacji. Zaloguj się lub zmień na odpowiednie konto.'
     end
     redirect_to blog_post_path(params[:blog_id],@post.id)
   end

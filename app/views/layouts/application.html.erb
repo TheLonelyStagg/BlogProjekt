@@ -12,12 +12,31 @@
   <body>
       <%= render 'layouts/header' %>
 
-      <% flash.each do |name, massage| %>
-        <%= content_tag(:div, massage, class: "alert alert-info") %>
-      <%end %>
+      <div class="jumbotron">
 
-      <div style="background-color:lightblue">
-        <%= yield %>
+        <div >
+          <% flash.each do |name, massage| %>
+            <% case name%>
+              <%  when "notice" then type_notice = "alert alert-info"%>
+              <% when "success" then type_notice = "alert alert-success"%>
+              <% when "error" then type_notice = "alert alert-danger"%>
+              <% when "alert" then type_notice = "alert alert-warning"%>
+              <% else type_notice = "alert alert-info"%>
+            <% end %>
+
+            <%= content_tag(:div, massage, class: type_notice) do%>
+              <%= content_tag(:button, 'x', class: "close", data: { dismiss: 'alert' }) %>
+                  <%= massage %>
+            <% end %>
+          <% end %>
+        </div>
+
+
+        <div >
+          <%= yield %>
+        </div>
+
       </div>
+
   </body>
 </html>

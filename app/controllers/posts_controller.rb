@@ -12,7 +12,8 @@ class PostsController < ApplicationController
       @nazwa = Blog.where("id = ?", params[:blog_id]).first.name
 
     else
-      redirect_to :controller =>'sessions', :action=>'new'
+      flash[:alert] = 'Brak odpowiednich kwalifikacji. Zaloguj się lub zmień na odpowiednie konto.'
+      redirect_to blog_posts_path
     end
   end
 
@@ -28,25 +29,32 @@ class PostsController < ApplicationController
       tagpom.each do |name|
         @nowytag = Tag.where(tagName: name.strip).first_or_initialize
         if @nowytag.save
+        else
+          flash[:error] = 'Bląd podczas dodawania postu.'
+          render :action => 'new'
         end
         @tymczasowytag = Tag.where(tagName: name.strip).first!
         @posttags = PostTag.new
         @posttags.update_attribute(:post_id, @post.id)
         @posttags.update_attribute(:tag_id, @tymczasowytag.id)
-        @posttags.save
+        if @posttags.save
+        else
+          flash[:error] = 'Bląd podczas dodawania postu.'
+          render :action => 'new'
+        end
       end
       czy_ok = @post.save
-
       if czy_ok
-        flash[:notice] = 'Blog zostal utworzony.'
+        flash[:success] = 'Post został dodany.'
         redirect_to blog_posts_path
       else
+        flash[:error] = 'Bląd podczas dodawania postu.'
         render :action => "new"
       end
     else
-      redirect_to blog_posts_path(params[:blog_id])
+      flash[:alert] = 'Brak odpowiednich kwalifikacji. Zaloguj się lub zmień na odpowiednie konto.'
+      redirect_to blog_posts_path
     end
-
 
   end
 
@@ -56,7 +64,6 @@ class PostsController < ApplicationController
       @comment = @post.comments.new
       @comments = Comment.where("post_id = ?", params[:id])
       @users = User.all
-
   end
 
   def destroy
@@ -66,9 +73,12 @@ class PostsController < ApplicationController
     if(logged_in? && (current_user.id == @post.blog.user.id ||  current_user.is_admin ))
       czy_ok = @post.destroy
       if czy_ok
-        flash[:notice] = 'Post usuniety.'
-
+        flash[:notice] = 'Post został usunięty.'
+      else
+        flash[:error] = 'Bląd podczas usuwania postu.'
       end
+    else
+      flash[:alert] = 'Brak odpowiednich kwalifikacji. Zaloguj się lub zmień na odpowiednie konto.'
     end
     redirect_to blog_posts_path(params[:blog_id])
   end
@@ -110,7 +120,8 @@ class PostsController < ApplicationController
       end
 
     else
-      redirect_to :controller =>'sessions', :action=>'new'
+      flash[:alert] = 'Brak odpowiednich kwalifikacji. Zaloguj się lub zmień na odpowiednie konto.'
+      redirect_to blog_posts_path(params[:blog_id])
     end
 
   end
@@ -128,19 +139,28 @@ class PostsController < ApplicationController
       tagpom.each do |name|
         @nowytag = Tag.where(tagName: name.strip).first_or_initialize
         if @nowytag.save
+        else
+          flash[:error] = 'Bląd podczas edytowania postu.'
+          render :action => 'new'
         end
         @tymczasowytag = Tag.where(tagName: name.strip).first!
         @posttags = PostTag.where(post_id: params[:id],tag_id: @tymczasowytag.id).first_or_initialize
-        @posttags.save
+        if @posttags.save
+        else
+          flash[:error] = 'Bląd podczas edytowania postu.'
+          render :action => 'new'
+        end
       end
 
       if @post.update_attributes(post_params)
-        flash[:success] = 'Post zostal zupdateowany.'
+        flash[:success] = 'Post został pomyślnie zedytowany.'
         redirect_to blog_posts_path(@post.blog.id)
       else
+        flash[:error] = 'Bląd podczas edytowania postu.'
         render :action => 'new'
       end
     else
+      flash[:alert] = 'Brak odpowiednich kwalifikacji. Zaloguj się lub zmień na odpowiednie konto.'
       redirect_to blog_posts_path(params[:blog_id])
     end
 

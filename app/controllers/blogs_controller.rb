@@ -8,7 +8,8 @@ class BlogsController < ApplicationController
     if(logged_in?)
       @blog = Blog.new
     else
-      redirect_to :controller =>'sessions', :action=>'new'
+      flash[:alert] = 'W celu dodania blogu należy się zalogować.'
+      redirect_to blogs_path
     end
   end
   
@@ -25,22 +26,31 @@ class BlogsController < ApplicationController
       rodzajepom.each do |name|
         @nowyrodzaj = Kind.where(kindName: name.strip).first_or_initialize
         if @nowyrodzaj.save
+        else
+          flash[:error] = 'Bląd podczas dodawania blogu.'
+          render :action => 'new'
         end
         @tymczasowyrodzaj = Kind.where(kindName: name.strip).first!
         @blogrodzaje = BlogKind.new
         @blogrodzaje.update_attribute(:blog_id, @blog.id)
         @blogrodzaje.update_attribute(:kind_id, @tymczasowyrodzaj.id)
-        @blogrodzaje.save
+        if @blogrodzaje.save
+        else
+          flash[:error] = 'Bląd podczas dodawania blogu.'
+          render :action => 'new'
+        end
       end
 
       if @blog.save
-        flash[:success] = 'Blog zostal utworzony.'
+        flash[:success] = 'Blog został dodany.'
         redirect_to blogs_path
       else
+        flash[:error] = 'Bląd podczas dodawania blogu.'
         render :action => 'new'
       end
     else
-      redirect_to :controller =>'sessions', :action=>'new'
+      flash[:alert] = 'W celu dodania blogu należy się zalogować.'
+      redirect_to blogs_path
     end
 
   end
@@ -64,7 +74,8 @@ class BlogsController < ApplicationController
       end
 
     else
-      redirect_to :controller =>'sessions', :action=>'new'
+      flash[:alert] = 'Brak odpowiednich kwalifikacji. Zaloguj się lub zmień na odpowiednie konto.'
+      redirect_to blogs_path
     end
   end
 
@@ -81,20 +92,29 @@ class BlogsController < ApplicationController
       rodzajepom.each do |name|
         @nowyrodzaj = Kind.where(kindName: name.strip).first_or_initialize
         if @nowyrodzaj.save
+        else
+          flash[:error] = 'Bląd podczas edytowania blogu.'
+          render :action => 'new'
         end
         @tymczasowyrodzaj = Kind.where(kindName: name.strip).first!
         @blogrodzaje = BlogKind.where(blog_id: @blog.id, kind_id: @tymczasowyrodzaj.id).first_or_initialize
-        @blogrodzaje.save
+        if @blogrodzaje.save
+        else
+          flash[:error] = 'Bląd podczas edytowania blogu.'
+          render :action => 'new'
+        end
       end
 
       if @blog.update_attributes(blog_params)
-        flash[:success] = 'Blog zostal zupdateowany.'
+        flash[:success] = 'Blog został pomyślnie zedytowany.'
         redirect_to blogs_path
       else
+        flash[:error] = 'Bląd podczas edytowania blogu.'
         render :action => 'new'
       end
     else
-      redirect_to :controller =>'sessions', :action=>'new'
+      flash[:alert] = 'Brak odpowiednich kwalifikacji. Zaloguj się lub zmień na odpowiednie konto.'
+      redirect_to blogs_path
     end
 
   end
@@ -125,10 +145,14 @@ class BlogsController < ApplicationController
     if(logged_in? && (current_user.id == @blog.user.id ||  current_user.is_admin ))
       czy_ok = @blog.destroy
       if czy_ok
-        flash[:notice] = 'Blog usuniety.'
-
+        flash[:notice] = 'Blog został usunięty.'
+      else
+        flash[:error] = 'Bląd podczas usuwania blogu.'
       end
+    else
+      flash[:alert] = 'Brak odpowiednich kwalifikacji. Zaloguj się lub zmień na odpowiednie konto.'
     end
+
     redirect_to blogs_path
 
   end

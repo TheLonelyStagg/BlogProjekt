@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       end
 
     else
-      flash[:danger] = 'Błędne hasło lub email'
+      flash[:error] = 'Błędne hasło lub email'
       redirect_to :acton => "new", :controller_name => "SessionsController"
 
     end
@@ -24,28 +24,35 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out
+    flash[:notice] = 'Pomyślnie wylogowano'
     redirect_back fallback_location: root_path
   end
 
 
   def new_account
     @user = User.new
+    @user.pass_confirm = ''
   end
 
   def create_account
-    @user = User.new(user_params)
-    @user.update_attribute(:is_admin, false)
-
-    if @user.save
-      flash[:notice] = 'User zostal utworzony.'
-      redirect_to login_path
+    if (params[:user][:password] == params[:user][:pass_confirm])
+      @user = User.new(user_params_reg)
+      @user.update_attribute(:is_admin, false)
+      if @user.save
+        flash[:notice] = 'User zostal utworzony.'
+        redirect_to login_path
+      else
+        flash[:error] = 'Błąd podczas rejestracji.'
+        render :action => "new_account"
+      end
     else
+      flash[:error] = 'Błędnie powtórzone hasło.'
       render :action => "new_account"
     end
   end
 
   private
-  def user_params
-    params.require(:user).permit(:username, :password, :name, :surname, :email, :phoneNumber)
+  def user_params_reg
+    params.require(:user).permit(:username, :password, :name, :surname, :email, :phoneNumber, :pass_confirm)
   end
 end
