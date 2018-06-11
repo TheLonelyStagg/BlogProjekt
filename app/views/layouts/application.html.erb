@@ -12,8 +12,11 @@
   <body>
       <%= render 'layouts/header' %>
 
-      <div style="background-color:lightblue">
+      <% flash.each do |name, massage| %>
+        <%= content_tag(:div, massage, class: "alert alert-info") %>
+      <%end %>
 
+      <div style="background-color:lightblue">
         <%= yield %>
       </div>
   </body>
