@@ -18,9 +18,9 @@
   <%= link_to 'Zaloguj sie aby dodac komentarz', {controller: 'sessions', action: 'new'} %>
 <% end %>
 
-
+<div>
 <% for komentarz in @comments.reverse_order %>
-  <div>
+
     <p style="font-size: small">
       Created by: <%= @users.find{|item| item.id == komentarz.user_id}.username %> <%= time_ago_in_words(komentarz.dataiIGodz) %> ago
       <% if(logged_in? && (current_user.id == @post.blog.user.id || current_user.id == komentarz.user.id || current_user.is_admin )) %>

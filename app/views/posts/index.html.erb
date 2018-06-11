@@ -1,30 +1,6 @@
 <h1>Posty blogu -> <%=h @nazwa %></h1>
 
-<table>
-  <tr>
-    <th>Data</th>
-    <th>Title</th>
-    <th>Status</th>
-    <th>ifTop</th>
-    <th>TextContent</th>
-    <th>Img</th>
-
-  </tr>
-
-<% for post in @posts %>
-  <tr>
-    <td><%=h post.data %></td>
-    <td><%=h post.title %></td>
-    <td><%=h post.status %></td>
-    <td><%=h post.ifTop %></td>
-    <td><%=h post.text_content %></td>
-    <td><%=h post.img_route %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-<div>
+<div >
   <% for post in @posts.reverse_order %>
 
     <div class="container">
@@ -43,11 +19,11 @@
           | <a style="font-size: small"><%= link_to 'Edytuj', edit_blog_post_path(blog_id: post.blog.id, id: post.id)  %></a>
         <% end %>
       </p>
-      <p style="font-size: small">
+      <div >
         <% for tags in post.tags %>
-          <%=h tags.tagName+' ' %>
+          <span class="badge badge-pill badge-primary">#<%=h tags.tagName%></span>
         <% end %>
-      </p>
+      </div>
 
       <br/>
     </div>

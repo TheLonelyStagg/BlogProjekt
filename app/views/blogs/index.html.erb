@@ -5,28 +5,47 @@
   <div class="card">
     <div class="card-body">
       <h4 class="card-title"><%=h blog.name %></h4>
-      <p class="card-text">Możeby tak zrobić jakiś krótki opis bloga</p>
-      <p class="card-text">Stworzony przez <%=h @users.find{|item| item.id == blog.user_id}.username %></p>
-
-      <%= link_to blog_posts_path(blog.id) do %>
-        <span class="card-link">Przejdz</span>
-      <% end %>
-
-      <% if(logged_in? && (current_user.id == blog.user.id ||  current_user.is_admin )) %>
-
-        <%= link_to edit_blog_path(blog.id) do %>
-          <span class="card-link">Edytuj</span>
+      <p class="card-text">Założony przez użytkownika: <em><%=h @users.find{|item| item.id == blog.user_id}.username %></em></p>
+      <p >
+        <% for kinds in blog.kinds %>
+          <span class="badge badge-pill badge-secondary"> #<%=h kinds.kindName%> </span>
         <% end %>
+      </p>
+    </div>
+    <div class="card-footer">
+      <div class="row">
+        <div class="col">
+          <small class="text-muted">Założony dnia: <%= blog.dataZalozenia.strftime("%d.%m.%Yr.") %></small>
+        </div>
+        <div class="col">
+          <div class="float-right">
+            <%= link_to blog_posts_path(blog.id) do %>
+              <button type="button" class="btn btn-primary">Przejdź</button>
+            <% end %>
 
-        <%= link_to blog_path(blog),
-                    method: :delete,
-                    data: { confirm: 'Are you sure?' } do %>
-          <span class="card-link">Usuń</span>
-        <% end %>
+            <% if(logged_in? && (current_user.id == blog.user.id ||  current_user.is_admin )) %>
 
-      <% end %>
+              <%= link_to edit_blog_path(blog.id) do %>
+                <button type="button" class="btn btn-primary">Edytuj</button>
+              <% end %>
+
+              <%= link_to blog_path(blog),
+                          method: :delete,
+                          data: { confirm: 'Are you sure?' } do %>
+                <button type="button" class="btn btn-primary">Usuń</button>
+              <% end %>
+
+            <% end %>
+          </div>
+
+        </div>
+
+
+      </div>
+
 
     </div>
   </div>
+  <br/>
 <% end %>
 <%= (logged_in?)?(link_to 'Dodaj bloga'  , new_blog_path): nil %>
