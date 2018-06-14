@@ -94,14 +94,14 @@ class BlogsController < ApplicationController
         if @nowyrodzaj.save
         else
           flash[:error] = 'Bląd podczas edytowania blogu.'
-          render :action => 'new'
+          render :action => 'edit'
         end
         @tymczasowyrodzaj = Kind.where(kindName: name.strip).first!
         @blogrodzaje = BlogKind.where(blog_id: @blog.id, kind_id: @tymczasowyrodzaj.id).first_or_initialize
         if @blogrodzaje.save
         else
           flash[:error] = 'Bląd podczas edytowania blogu.'
-          render :action => 'new'
+          render :action => 'edit'
         end
       end
 
@@ -110,7 +110,7 @@ class BlogsController < ApplicationController
         redirect_to blogs_path
       else
         flash[:error] = 'Bląd podczas edytowania blogu.'
-        render :action => 'new'
+        render :action => 'edit'
       end
     else
       flash[:alert] = 'Brak odpowiednich kwalifikacji. Zaloguj się lub zmień na odpowiednie konto.'

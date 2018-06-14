@@ -9,6 +9,7 @@
     <th>Mail</th>
     <th>Numer</th>
     <th>IsAdmin</th>
+    <th></th>
   </tr>
 
 <% for u in @users %>
@@ -20,7 +21,8 @@
     <td><%=h u.email %></td>
     <td><%=h u.phoneNumber %></td>
     <td><%=h (u.is_admin)? "owwYeah" : "nope" %></td>
-    
+    <td><%= link_to 'Usun', u, method: :delete, data: {confirm: 'Czy aby na pewno?'} %> |
+    <%= link_to 'Edytuj', edit_user_path(u) %></td>
   </tr>
 <% end %>
 </table>

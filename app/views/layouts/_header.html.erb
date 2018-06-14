@@ -20,7 +20,23 @@
     <% if (params[:controller] != 'sessions')%>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
-        <li class="nav-link">Witaj <%= current_user.username %></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Witaj <%= current_user.username %>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">Edytuj profil</a>
+
+            <% if current_user.blogs.count != 0 %>
+              <hr>
+            <% end %>
+
+            <% for b in current_user.blogs %>
+              <%= link_to b.name, blog_posts_path(b.id), {:class=>"dropdown-item"}%>
+            <%end %>
+
+          </div>
+        </li>
           <%= link_to :controller => 'sessions', :action=>'destroy' do %>
             <li class="nav-link" style="text-decoration:none">Wyloguj</li>
           <%end %>
