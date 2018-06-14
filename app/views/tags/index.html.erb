@@ -1,21 +1,46 @@
 <h1>Tagi</h1>
 
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Nazwa</th>
-    <th>Ilosc w PostTag</th>
-    <th></th>
-  </tr>
+<% if logged_in? && current_user.is_admin %>
 
-  <% for tags in @tags %>
+  <table class="table table-striped">
+    <thead>
     <tr>
-      <td><%=tags.id %></td>
-      <td><%=tags.tagName %></td>
-      <td><%= PostTag.where('tag_id = ?', tags.id).count %></td>
-      <td><%= link_to "Usun ", tags, :method=>:delete, :class=>:destroy %></td>
-      <td><%= link_to "Pokaż posty z tagiem", :controller => 'tags', :action =>'show', :param => tags.id %></td>
+      <th scope="col">#</th>
+      <th scope="col">Nazwa</th>
+      <th scope="col">Ilość postów</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
     </tr>
-  <% end %>
-</table>
-<br />
+    </thead>
+    <tbody>
+    <% for tags in @tags %>
+      <tr>
+        <th scope="row"><%=tags.id %></th>
+        <td><%=tags.tagName %></td>
+        <td><%= PostTag.where('tag_id = ?', tags.id).count %></td>
+        <td><%= link_to "Wyszukaj", :controller => 'tags', :action =>'show', :param => tags.id %></td>
+        <td><%= link_to "Usuń ", tags, :method=>:delete, :class=>:destroy %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+<%else %>
+  <% iter=0 %>
+  <% dziel=5 %>
+  <div class="text-center ">
+    <% for tags in @tags %>
+
+      <%= link_to :controller => 'tags', :action =>'show', :param => tags.id do %>
+        <button type="button" class="btn btn-primary">#<%=tags.tagName %></button>
+      <% end %>
+
+      <%iter = iter+1 %>
+      <% if (iter == dziel) %>
+        </br> </br>
+        <%iter = 0 %>
+        <%	dziel = (dziel==5)? 4 : 5  %>
+      <% end %>
+    <% end %>
+  </div>
+<%end %>

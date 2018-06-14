@@ -127,6 +127,7 @@ class BlogsController < ApplicationController
   def bycategory
     @blog = Blog.all
     @users = User.all
+    @categoryId = params[:category]
     cat_id = params[:category].to_i
     @array = []
     @blog.each do |p|

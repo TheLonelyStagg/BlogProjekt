@@ -1,28 +1,41 @@
 class UsersController < ApplicationController
   def index
+    if(logged_in? &&  current_user.is_admin )
     @users = User.all
+    else
+      flash[:alert] = 'Brak odpowiednich kwalifikacji. Zaloguj się lub zmień na odpowiednie konto.'
+      redirect_to blogs_path
+    end
   end
   
   def new
+    if(logged_in? &&  current_user.is_admin )
     @user = User.new
+    else
+      flash[:alert] = 'Brak odpowiednich kwalifikacji. Zaloguj się lub zmień na odpowiednie konto.'
+      redirect_to blogs_path
+    end
   end
   
   def create
-    @user = User.new(user_params)
+    if(logged_in? &&  current_user.is_admin )
+      @user = User.new(user_params)
 
-    if @user.save
-      flash[:notice] = 'User zostal utworzony.'
-       redirect_to users_path
+      if @user.save
+        flash[:notice] = 'User zostal utworzony.'
+        redirect_to users_path
+      else
+        render :action => "new"
+      end
     else
-       render :action => "new"
+      flash[:alert] = 'Brak odpowiednich kwalifikacji. Zaloguj się lub zmień na odpowiednie konto.'
+      redirect_to blogs_path
     end
-
   end
 
   def destroy
-    @user = User.find(params[:id])
-
     if(logged_in? && current_user.is_admin )
+      @user = User.find(params[:id])
       czy_ok = @user.destroy
       if czy_ok
         flash[:notice] = 'Uzytkownik został usunięty.'
@@ -31,8 +44,9 @@ class UsersController < ApplicationController
       end
     else
       flash[:alert] = 'Brak odpowiednich kwalifikacji. Zaloguj się lub zmień na odpowiednie konto.'
+      redirect_to blogs_path
     end
-    redirect_to users_path
+
   end
 
 
@@ -41,13 +55,13 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     else
       flash[:alert] = 'Brak odpowiednich kwalifikacji. Zaloguj się lub zmień na odpowiednie konto.'
-      redirect_to users_path
+      redirect_to blogs_path
     end
   end
 
   def update
-    @user = User.find(params[:id])
     if(logged_in? && current_user.is_admin)
+      @user = User.find(params[:id])
       if @user.update_attributes(user_params)
         flash[:success] = 'Uzytkownik został pomyślnie zedytowany.'
         redirect_to users_path
@@ -57,7 +71,7 @@ class UsersController < ApplicationController
       end
     else
       flash[:alert] = 'Brak odpowiednich kwalifikacji. Zaloguj się lub zmień na odpowiednie konto.'
-      redirect_to users_path
+      redirect_to blogs_path
     end
 
   end

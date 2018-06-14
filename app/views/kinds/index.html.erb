@@ -1,22 +1,47 @@
 <h1>Rodzaje</h1>
 
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Nazwa</th>
-    <th>Ilosc w KindBlog</th>
-    <th></th>
-    <th></th>
-  </tr>
 
-  <% for kinds in @rodzaje %>
+<% if logged_in? && current_user.is_admin %>
+
+  <table class="table table-striped">
+    <thead>
     <tr>
-      <td><%=kinds.id %></td>
+      <th scope="col">#</th>
+      <th scope="col">Nazwa</th>
+      <th scope="col">Ilosc blogow</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% for kinds in @rodzaje %>
+    <tr>
+      <th scope="row"><%=kinds.id %></th>
       <td><%=kinds.kindName %></td>
       <td><%= BlogKind.where('kind_id = ?', kinds.id).count %></td>
-      <td><%= link_to "Usun", kinds, :method=>:delete, :class=>:destroy %></td>
-      <td><%= link_to "Pokaż blogi z kategori", :controller => 'kinds', :action =>'show', :param => kinds.id %></td>
+      <td><%= link_to "Wyszukaj", :controller => 'kinds', :action =>'show', :param => kinds.id %></td>
+      <td><%= link_to "Usuń", kinds, :method=>:delete, :class=>:destroy %></td>
     </tr>
-  <% end %>
-</table>
-<br />
+    <% end %>
+    </tbody>
+  </table>
+
+<%else %>
+  <% iter=0 %>
+  <% dziel=5 %>
+  <div class="text-center ">
+    <% for kinds in @rodzaje %>
+
+        <%= link_to :controller => 'kinds', :action =>'show', :param => kinds.id do %>
+          <button type="button" class="btn btn-primary">#<%=kinds.kindName %></button>
+        <% end %>
+
+      <%iter = iter+1 %>
+      <% if (iter == dziel) %>
+        </br> </br>
+        <%iter = 0 %>
+        <%	dziel = (dziel==5)? 4 : 5  %>
+      <% end %>
+    <% end %>
+  </div>
+<%end %>

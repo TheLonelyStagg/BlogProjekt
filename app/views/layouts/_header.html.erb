@@ -26,6 +26,9 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" href="#">Edytuj profil</a>
+            <% if current_user.is_admin %>
+              <%= link_to "Użytkownicy",users_path, {:class=>"dropdown-item"}%>
+            <% end %>
 
             <% if current_user.blogs.count != 0 %>
               <hr>

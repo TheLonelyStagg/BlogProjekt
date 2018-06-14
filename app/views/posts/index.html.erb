@@ -1,37 +1,44 @@
-<h1>Posty blogu -> <%=h @nazwa %></h1>
 
-<div >
-  <% for post in @posts.reverse_order %>
+<div class="container" style="height: 100%; width: 100%">
+  <div class="row">
+    <div class="col">
 
-    <div class="container">
-        <% alt_naglowek_dl = 10%>
-        <h2> <%= link_to (post.title.blank?)? post.text_content.first(alt_naglowek_dl)+"..." : post.title, :controller => 'posts', :action=>'show', :id => post.id%> </h2>
-
-      <p>
-        <% limit_dlugosci_podgladu = 15%>
-        <%=h (post.text_content.length>limit_dlugosci_podgladu+1)? post.text_content.first(limit_dlugosci_podgladu)+"...": post.text_content.first(limit_dlugosci_podgladu) %>
-      </p>
-
-      <p style="font-size: small">
-        Posted on <%=h post.data %>
-        <% if(logged_in? && (current_user.id == post.blog.user.id || current_user.is_admin )) %>
-          | <a style="font-size: small"><%= link_to 'Usun', [post.blog, post], method: :delete, data: {confirm: 'Czy aby na pewno?'} %></a>
-          | <a style="font-size: small"><%= link_to 'Edytuj', edit_blog_post_path(blog_id: post.blog.id, id: post.id)  %></a>
-        <% end %>
-      </p>
-      <div >
-        <% for tags in post.tags %>
-          <span class="badge badge-pill badge-primary">#<%=h tags.tagName%></span>
-        <% end %>
-      </div>
-
-      <br/>
     </div>
-  <% end %>
+    <div class="col-10">
+      <h1>Posty blogu <%=h @nazwa %></h1>
+      <% for post in @posts.reverse_order %>
+
+        <div class="card" style="margin:4px; background-color: cornsilk">
+          <% alt_naglowek_dl = 10%>
+          <h2> <%= link_to (post.title.blank?)? post.text_content.first(alt_naglowek_dl)+"..." : post.title, :controller => 'posts', :action=>'show', :id => post.id%> </h2>
+
+          <p>
+            <% limit_dlugosci_podgladu = 15%>
+            <%=h (post.text_content.length>limit_dlugosci_podgladu+1)? post.text_content.first(limit_dlugosci_podgladu)+"...": post.text_content.first(limit_dlugosci_podgladu) %>
+          </p>
+
+          <p style="font-size: small">
+            Opublikowane dnia: <%=h post.data %>
+            <% if(logged_in? && (current_user.id == post.blog.user.id || current_user.is_admin )) %>
+              | <a style="font-size: small"><%= link_to 'Usuń', [post.blog, post], method: :delete, data: {confirm: 'Czy aby na pewno?'} %></a>
+              | <a style="font-size: small"><%= link_to 'Edytuj', edit_blog_post_path(blog_id: post.blog.id, id: post.id)  %></a>
+            <% end %>
+          </p>
+          <div >
+            <% for tags in post.tags %>
+              <span class="badge badge-pill badge-primary">#<%=h tags.tagName%></span>
+            <% end %>
+          </div>
+          <br/>
+        </div>
+      <% end %>
+    </div>
+    <div class="col">
+      <% if(logged_in? && (current_user.id == @blog.user.id || current_user.is_admin )) %>
+        <%= link_to 'Dodaj post', new_blog_post_path %>
+      <% end %>
+    </div>
+  </div>
+  <br />
 
 </div>
-
-<br />
-<% if(logged_in? && (current_user.id == @blog.user.id || current_user.is_admin )) %>
-  <%= link_to 'Dodaj post', new_blog_post_path %>
-<% end %>
