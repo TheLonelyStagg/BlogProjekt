@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_09_170725) do
+ActiveRecord::Schema.define(version: 2018_06_15_194113) do
 
   create_table "blog_kinds", force: :cascade do |t|
     t.integer "blog_id"
@@ -72,6 +72,10 @@ ActiveRecord::Schema.define(version: 2018_06_09_170725) do
     t.text "text_content"
     t.string "img_route"
     t.string "title"
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["blog_id"], name: "index_posts_on_blog_id"
   end
 

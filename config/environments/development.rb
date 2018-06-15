@@ -58,4 +58,11 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+
+  # do pobrania mozliwe 50% ze trzeba -> https://www.imagemagick.org/download/binaries/ImageMagick-7.0.8-0-Q16-x64-dll.exe
+  # i raczej na 80% trzeba to -> http://downloads.sourceforge.net/gnuwin32/file-5.03-setup.exe
+  # i sciezka tego drugiego na dole zapodac
+  Paperclip.options[:command_path] = 'C:\Program Files (x86)\GnuWin32\bin;'
+
 end

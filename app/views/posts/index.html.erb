@@ -13,6 +13,10 @@
           <h2> <%= link_to (post.title.blank?)? post.text_content.first(alt_naglowek_dl)+"..." : post.title, :controller => 'posts', :action=>'show', :id => post.id%> </h2>
 
           <p>
+            <%= image_tag post.image.url(:medium)%>
+          </p>
+
+          <p>
             <% limit_dlugosci_podgladu = 15%>
             <%=h (post.text_content.length>limit_dlugosci_podgladu+1)? post.text_content.first(limit_dlugosci_podgladu)+"...": post.text_content.first(limit_dlugosci_podgladu) %>
           </p>

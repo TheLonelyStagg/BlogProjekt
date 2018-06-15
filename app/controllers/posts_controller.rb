@@ -217,7 +217,7 @@ class PostsController < ApplicationController
   
   private 
   def post_params
-    params.require(:post).permit(:data, :ifTop, :status, :text_content, :img_route, :title, :tagipostu)
+    params.require(:post).permit(:data, :ifTop, :status, :text_content, :title, :tagipostu, :image, :img_route)
   end
 
 end
