@@ -1,8 +1,12 @@
 <h1>Utwórz post na blogu -> <%= @nazwa %></h1>
 
-<%= form_with scope: :post, url: blog_posts_path, local: true do |form| %>
-  
+<%= form_with scope: :post, url: blog_posts_path, html: {multipart: true}, local: true do |form| %>
 
+
+  <p>
+    <%= form.label :image %><br />
+    <%= form.file_field :image %>
+  </p>
   <p>
     <%= form.label :title %><br />
     <%= form.text_field :title %>
