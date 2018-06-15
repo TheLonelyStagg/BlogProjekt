@@ -21,6 +21,16 @@ class PostsController < ApplicationController
     @blog = Blog.find params[:blog_id]
     if(logged_in? && (current_user.id == @blog.user.id ||  current_user.is_admin ))
       @post = Post.new(post_params)
+      if (!@post.title.present?)
+        flash[:error] = 'Post musi mieć nazwę.'
+        render :action => 'new'
+        return
+      end
+      if (!@post.text_content.present?)
+        flash[:error] = 'Post musi mieć treść.'
+        render :action => 'new'
+        return
+      end
       @post.update_attribute(:blog_id, params[:blog_id])
       @post.update_attribute(:data, Date.today)
       @post.update_attribute(:ifTop, false)
@@ -37,6 +47,7 @@ class PostsController < ApplicationController
         @posttags = PostTag.new
         @posttags.update_attribute(:post_id, @post.id)
         @posttags.update_attribute(:tag_id, @tymczasowytag.id)
+
         if @posttags.save
         else
           flash[:error] = 'Bląd podczas dodawania postu.'

@@ -6,4 +6,6 @@ class User < ApplicationRecord
   attr_accessor :pass_confirm
   attr_accessor :old_pass
   attr_accessor :new_pass
+
+  validates :username, :name, :password, :email, :surname, :phoneNumber, presence: true
 end
