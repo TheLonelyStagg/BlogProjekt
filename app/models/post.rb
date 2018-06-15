@@ -6,4 +6,6 @@ class Post < ApplicationRecord
   has_many :tags, through: :post_tags
 
   attr_accessor :tagipostu
+  validates :title, presence: true
+  validates :text_content, presence: true
 end

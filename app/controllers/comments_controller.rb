@@ -4,6 +4,11 @@ class CommentsController < ApplicationController
     @post = Post.find params[:post_id]
     if(logged_in?)
       @comment = @post.comments.new(comment_params)
+      if (!@comment.content.present?)
+        flash[:alert] = 'Komentarz musi zawierać treść'
+        redirect_to blog_post_path(params[:blog_id],@post.id)
+        return
+      end
       @comment.update_attribute(:dataiIGodz, DateTime.now)
       @comment.update_attribute(:user_id, current_user.id )
       @comment.update_attribute(:upVote, 0 )

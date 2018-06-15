@@ -33,6 +33,11 @@ class SessionsController < ApplicationController
   def create_account
     if (params[:user][:password] == params[:user][:pass_confirm])
       @user = User.new(user_params_reg)
+      if @user.invalid?
+        flash[:error] = 'Pola muszą być wypełnione'
+        render :action => "new_account"
+        return
+      end
       @user.update_attribute(:is_admin, false)
       if @user.save
         flash[:notice] = 'User zostal utworzony.'

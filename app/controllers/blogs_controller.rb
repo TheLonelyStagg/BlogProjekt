@@ -18,6 +18,11 @@ class BlogsController < ApplicationController
     if(logged_in?)
 
       @blog = Blog.new(blog_params)
+      if (!@blog.name.present?)
+        flash[:error] = 'Nazwa blogu jest wymagana'
+        render :action => "new"
+        return
+      end
       @blog.update_attribute(:user_id, current_user.id)
       @blog.update_attribute(:dataZalozenia, Date.today)
 

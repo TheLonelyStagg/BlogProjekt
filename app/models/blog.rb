@@ -6,5 +6,6 @@ class Blog < ApplicationRecord
   has_many :kinds, through: :blog_kinds
 
   attr_accessor :rodzajeblogu
+  validates :name, presence: true
 
 end
