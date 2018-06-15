@@ -70,10 +70,23 @@ class PostsController < ApplicationController
     @blog = Blog.find params[:blog_id]
     @post = Post.find params[:id]
 
+
     if(logged_in? && (current_user.id == @post.blog.user.id ||  current_user.is_admin ))
       czy_ok = @post.destroy
       if czy_ok
-        flash[:notice] = 'Post został usunięty.'
+        # sprawdzenie i usuniecie w przypadku gdy w PostsTags zaowocuje to 0 przy count
+        Tag.all.each do |item|
+          if PostTag.where('tag_id = ?', item.id).count.zero?
+            if item.destroy
+            else
+              flash[:error] = 'Bląd podczas usuwania postu.'
+            end
+          end
+        end
+
+        if flash[:error].blank?
+          flash[:notice] = 'Post został usunięty.'
+        end
       else
         flash[:error] = 'Bląd podczas usuwania postu.'
       end

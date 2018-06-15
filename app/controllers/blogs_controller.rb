@@ -170,7 +170,19 @@ class BlogsController < ApplicationController
     if(logged_in? && (current_user.id == @blog.user.id ||  current_user.is_admin ))
       czy_ok = @blog.destroy
       if czy_ok
-        flash[:notice] = 'Blog został usunięty.'
+        # sprawdzenie i usuniecie w przypadku gdy w BlogKind zaowocuje to 0 przy count
+        Kind.all.each do |item|
+          if BlogKind.where('kind_id = ?', item.id).count.zero?
+            if item.destroy
+            else
+              flash[:error] = 'Bląd podczas usuwania blogu.'
+            end
+          end
+        end
+
+        if flash[:error].blank?
+          flash[:notice] = 'Blog został usunięty.'
+        end
       else
         flash[:error] = 'Bląd podczas usuwania blogu.'
       end
