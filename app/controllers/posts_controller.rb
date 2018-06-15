@@ -141,23 +141,47 @@ class PostsController < ApplicationController
         if @nowytag.save
         else
           flash[:error] = 'Bląd podczas edytowania postu.'
-          render :action => 'new'
+          render :action => 'edit'
         end
         @tymczasowytag = Tag.where(tagName: name.strip).first!
         @posttags = PostTag.where(post_id: params[:id],tag_id: @tymczasowytag.id).first_or_initialize
         if @posttags.save
         else
           flash[:error] = 'Bląd podczas edytowania postu.'
-          render :action => 'new'
+          render :action => 'edit'
         end
       end
+
+      # usuwanie tych co sie nie pojawily a byly wczesniej:
+      PostTag.where(post_id: params[:id]).each do |item|
+        if (tagpom.map{|slowo| slowo.strip}.include? item.tag.tagName)
+          # jest ok
+        else
+          # musimy usunac z PostTag (zapamietuje tylko jaki tag w razie usuniecia)
+          tagg = item.tag
+          if item.destroy
+            #jesli usunelo ladnie to trzeba jeszcze skontrolowac czy sam rodzaj nie jest moze juz potrzebny do przechowywania
+            if(tagg.posts.count == 0)
+              if tagg.destroy #jesli ladnie usunelo to ok
+              else
+                flash[:error] = 'Bląd podczas edytowania postu.'
+                render :action => 'edit'
+              end
+            end
+          else
+            flash[:error] = 'Bląd podczas edytowania postu.'
+            render :action => 'edit'
+          end
+        end
+      end
+
 
       if @post.update_attributes(post_params)
         flash[:success] = 'Post został pomyślnie zedytowany.'
         redirect_to blog_posts_path(@post.blog.id)
       else
         flash[:error] = 'Bląd podczas edytowania postu.'
-        render :action => 'new'
+        render :action => 'edit'
       end
     else
       flash[:alert] = 'Brak odpowiednich kwalifikacji. Zaloguj się lub zmień na odpowiednie konto.'

@@ -105,6 +105,30 @@ class BlogsController < ApplicationController
         end
       end
 
+      # usuwanie tych co sie nie pojawily a byly wczesniej:
+      BlogKind.where(blog_id: @blog.id).each do |item|
+        if (rodzajepom.map{|slowo| slowo.strip}.include? item.kind.kindName)
+          # jest ok
+        else
+          # musimy usunac z BlogKind (zapamietuje tylko jaki rodzaj w razie usuniecia)
+          rodzaj = item.kind
+          if item.destroy
+            #jesli usunelo ladnie to trzeba jeszcze skontrolowac czy sam rodzaj nie jest moze juz potrzebny do przechowywania
+            if(rodzaj.blogs.count == 0)
+              if rodzaj.destroy #jesli ladnie usunelo to ok
+              else
+                flash[:error] = 'Bląd podczas edytowania blogu.'
+                render :action => 'edit'
+              end
+            end
+          else
+            flash[:error] = 'Bląd podczas edytowania blogu.'
+            render :action => 'edit'
+          end
+        end
+      end
+
+
       if @blog.update_attributes(blog_params)
         flash[:success] = 'Blog został pomyślnie zedytowany.'
         redirect_to blogs_path
