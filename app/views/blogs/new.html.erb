@@ -1,22 +1,41 @@
-<h1>Utwórz blog</h1>
 
-<%= form_with scope: :blog, url: blogs_path, local: true do |form| %>
-  
+<div class="container-fluid">
 
-  <p>
-    <%= form.label :name %><br />
-    <%= form.text_field :name %>
-  </p>
+  <div class="row">
 
-  <p>
-    <%= form.label :rodzajeblogu %> <br/>
-    <%= form.text_field :rodzajeblogu %>
-  </p>
-  
-  <p>
-    <%= form.submit "Create" %>
-  </p>
-<% end %>
+      <div class="col">
+      <p></p>
+      </div>
 
-<%= link_to 'Back', blogs_path %>
+      <div class="col-6">
+        <div>
+          <h2>Załóż blog</h2>
 
+          <%= form_with scope: :blog, url: blogs_path, local: true do |form| %>
+
+
+            <p>
+              <%= form.label :name, "Nazwa blogu" %><br />
+              <%= form.text_field :name, class: 'form-control' %>
+            </p>
+
+            <p>
+              <%= form.label :rodzajeblogu, "Rodzaje blogu" %> <br/>
+              <%= form.text_field :rodzajeblogu, class: 'form-control' %>
+            </p>
+
+            <p>
+              <%= form.submit "Stwórz", :class => "btn btn-success"%>
+
+            </p>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col">
+        <p></p>
+      </div>
+    </div>
+
+
+</div>
