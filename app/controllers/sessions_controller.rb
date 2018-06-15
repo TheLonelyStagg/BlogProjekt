@@ -9,11 +9,7 @@ class SessionsController < ApplicationController
     if user && user.password ==  pom
       log_in user
       flash[:notice] = 'Pomyślnie zalogowano'
-      if(session[:back_url].blank?)
-        redirect_to blogs_path
-      else
-        redirect_to (session[:back_url])
-      end
+      getBack
 
     else
       flash[:error] = 'Błędne hasło lub email'
@@ -51,8 +47,61 @@ class SessionsController < ApplicationController
     end
   end
 
+  def edit_account
+    if(logged_in? )
+      @user = User.find(current_user.id)
+      @user.new_pass = ''
+      @user.pass_confirm = ''
+      @user.old_pass = ''
+
+    else
+      flash[:alert] = 'Zaloguj się aby edytować swoje konto.'
+      getBack
+    end
+  end
+
+  def update_account
+    if(logged_in?)
+      @user = User.find(current_user.id)
+      if (params[:user][:old_pass] == current_user.password)
+        if(!(params[:user][:new_pass].blank?))
+          if (params[:user][:new_pass] == params[:user][:pass_confirm])
+            @user.password = params[:user][:new_pass]
+          else
+            flash[:error] = 'Błędnie powtórzone hasło.'
+          end
+        end
+        if (@user.update_attributes(user_params_edt))
+          if (flash[:error].blank?)
+            flash[:success] = 'Uzytkownik został pomyślnie zedytowany.'
+          end
+          redirect_to :acton => "edit_account", :controller_name => "SessionsController"
+        else
+          flash[:error] = 'Bląd podczas edytowania uzytkownika.'
+          redirect_to :acton => "edit_account", :controller_name => "SessionsController"
+        end
+      else
+        flash[:error] = 'Potwierdzenie haslem wymagane.'
+        redirect_to :acton => "edit_account", :controller_name => "SessionsController"
+      end
+    else
+      flash[:alert] = 'Zaloguj się aby edytować swoje konto.'
+      getBack
+    end
+  end
+
   private
   def user_params_reg
     params.require(:user).permit(:username, :password, :name, :surname, :email, :phoneNumber, :pass_confirm)
+  end
+  def user_params_edt
+    params.require(:user).permit(:username, :name, :surname, :email, :phoneNumber, :pass_confirm, :old_pass, :new_pass)
+  end
+  def getBack
+    if(session[:back_url].blank?)
+      redirect_to blogs_path
+    else
+      redirect_to (session[:back_url])
+    end
   end
 end

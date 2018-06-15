@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   get    '/register',   to: 'sessions#new_account'
   post   '/register',   to: 'sessions#create_account'
+  get    '/edit_me',   to: 'sessions#edit_account'
+  patch '/edit_me',   to: 'sessions#update_account'
+
   get '/logout',  to: 'sessions#destroy'
   get 'sessions/destroy' => 'sessions#destroy'
   get 'comments/upvote' => 'comments#upvote'

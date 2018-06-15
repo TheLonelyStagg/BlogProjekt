@@ -4,4 +4,6 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   attr_accessor :pass_confirm
+  attr_accessor :old_pass
+  attr_accessor :new_pass
 end

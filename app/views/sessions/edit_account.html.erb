@@ -1,0 +1,50 @@
+<h1></h1>
+
+<%= form_with scope: :user, url: {controller: 'sessions',action: 'update_account'}, method: :patch do |form| %>
+
+
+  <p>
+    <%= form.label :username %><br>
+    <%= form.text_field :username %>
+  </p>
+
+  <p>
+    <%= form.label :new_pass %><br>
+    <%= form.password_field :new_pass %>
+  </p>
+  <p>
+    <%= form.label :pass_confirm %><br>
+    <%= form.password_field :pass_confirm %>
+  </p>
+
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :surname %><br>
+    <%= form.text_field :surname %>
+  </p>
+
+  <p>
+    <%= form.label :email %><br>
+    <%= form.text_field :email %>
+  </p>
+
+  <p>
+    <%= form.label :phoneNumber %><br>
+    <%= form.text_field :phoneNumber %>
+  </p>
+  </br>
+  <p>
+    <%= form.label :old_pass %><br>
+    <%= form.password_field :old_pass %>
+  </p>
+
+  <p>
+    <%= form.submit "Potwierdź" %>
+  </p>
+<% end %>
+
+

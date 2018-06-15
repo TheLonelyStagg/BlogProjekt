@@ -17,7 +17,7 @@
       <%end %>
     </ul>
 
-    <% if (params[:controller] != 'sessions')%>
+    <% if (params[:controller] != 'sessions' || params[:action] == 'edit_account' || params[:action] == 'update_account')%>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
         <li class="nav-item dropdown">
@@ -25,7 +25,7 @@
             Witaj <%= current_user.username %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Edytuj profil</a>
+            <%= link_to "Edytuj profil",{:controller => 'sessions', :action=>'edit_account'}, {:class=>"dropdown-item"}%>
             <% if current_user.is_admin %>
               <%= link_to "Użytkownicy",users_path, {:class=>"dropdown-item"}%>
             <% end %>
