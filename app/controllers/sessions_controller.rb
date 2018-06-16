@@ -6,14 +6,17 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     String pom = params[:session][:password]
-    if user && user.password ==  pom
+    if user && user.password ==  pom && verify_recaptcha(message: "Potwierdź że nie jesteś robotem")
       log_in user
       flash[:notice] = 'Pomyślnie zalogowano'
       getBack
 
     else
-      flash[:error] = 'Błędne hasło lub email'
-      redirect_to :acton => "new", :controller_name => "SessionsController"
+      if(!flash[:recaptcha_error].blank?)
+      else
+        flash[:error] = 'Błędne hasło lub email'
+      end
+      redirect_to :action => "new"
 
     end
   end

@@ -20,6 +20,7 @@
               <%  when "notice" then type_notice = "alert alert-info"%>
               <% when "success" then type_notice = "alert alert-success"%>
               <% when "error" then type_notice = "alert alert-danger"%>
+              <% when "recaptcha_error" then type_notice = "alert alert-danger"%>
               <% when "alert" then type_notice = "alert alert-warning"%>
               <% else type_notice = "alert alert-info"%>
             <% end %>

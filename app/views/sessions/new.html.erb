@@ -23,6 +23,11 @@
           <%= f.password_field :password, class: 'form-control' %>
         </p>
       </div>
+      <div class="form-group">
+        <p>
+          <%= recaptcha_tags %>
+        </p>
+      </div>
 
 
       <%= f.submit "Log in", class: "btn btn-primary" %>

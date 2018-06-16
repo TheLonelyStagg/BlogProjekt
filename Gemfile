@@ -60,5 +60,5 @@ gem 'bootstrap', '~> 4.1.1'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'jquery-rails'
 gem 'execjs'
-
+gem "recaptcha", require: "recaptcha/rails"
 gem "paperclip", "~> 6.0.0"
