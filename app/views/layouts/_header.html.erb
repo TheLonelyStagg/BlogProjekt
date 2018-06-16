@@ -1,25 +1,46 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" href="#">ProjektBlogi</a>
 
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <%= link_to :controller => 'blogs', :action=>'index' do %>
-        <li class="nav-link active" style="text-decoration:none">Blogi</li>
-      <%end %>
-      <%= link_to :controller => 'kinds', :action=>'index' do %>
-        <li class="nav-link" style="text-decoration:none">Rodzaje</li>
-      <%end %>
-      <%= link_to :controller => 'tags', :action=>'index' do %>
-        <li class="nav-link" style="text-decoration:none">Tagi</li>
-      <%end %>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <!-- lewy panel -->
+  <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" style="font-family: 'Impact'" >
+        <%= link_to "ProjektBlogi",{:controller => 'public', :action=>'home'}, { :class => "navbar-brand" } %>
+      </li>
+      <li class="nav-item" >
+        <%= link_to "Blogi",{:controller => 'blogs', :action=>'index'},
+                    { :class => "nav-link"+
+                        ((params[:controller]=='blogs' && params[:action]=='index')? " active": "") } %>
+      </li>
+      <li class="nav-item" >
+        <%= link_to "Rodzaje",{:controller => 'kinds', :action=>'index'},
+                    { :class => "nav-link"+
+                        ((params[:controller]=='kinds' && params[:action]=='index')? " active": "") } %>
+      </li>
+      <li class="nav-item" >
+        <%= link_to "Tagi",{:controller => 'tags', :action=>'index'},
+                    { :class => "nav-link"+
+                        ((params[:controller]=='tags' && params[:action]=='index')? " active": "") } %>
+      </li>
     </ul>
+  </div>
 
+  <!-- srodkowy panel -->
+  <div class="mx-auto order-0" style="font-family: 'Arial Black'">
+    <%if !params[:blog_id].blank? %>
+      <%= link_to Blog.find(params[:blog_id]).name,{:controller => 'blogs', :action=>'show', :id => params[:blog_id]}, { :class => "navbar-brand mx-auto" } %>
+    <% end %>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+
+  <!-- prawy panel -->
+  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
     <% if (params[:controller] != 'sessions' || params[:action] == 'edit_account' || params[:action] == 'update_account')%>
-      <ul class="nav navbar-nav navbar-right">
-        <% if logged_in? %>
+    <ul class="navbar-nav ml-auto">
+
+      <% if logged_in? %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Witaj <%= current_user.username %>
@@ -37,19 +58,19 @@
             <% for b in current_user.blogs %>
               <%= link_to b.name, blog_posts_path(b.id), {:class=>"dropdown-item"}%>
             <%end %>
-
           </div>
         </li>
-          <%= link_to :controller => 'sessions', :action=>'destroy' do %>
-            <li class="nav-link" style="text-decoration:none">Wyloguj</li>
-          <%end %>
-        <% else %>
-          <%= link_to :controller => 'sessions', :action=>'new' do %>
-            <li class="nav-link" style="text-decoration:none">Zaloguj</li>
-          <%end %>
-        <%end%>
-      </ul>
-    <%end %>
 
+        <li class="nav-item" >
+          <%= link_to "Wyloguj",{:controller => 'sessions', :action=>'destroy'}, { :class => "nav-link" } %>
+        </li>
+      <% else %>
+        <li class="nav-item" >
+          <%= link_to "Zaloguj",{:controller => 'sessions', :action=>'new'}, { :class => "nav-link" } %>
+        </li>
+      <%end%>
+
+    </ul>
+    <% end %>
   </div>
 </nav>
