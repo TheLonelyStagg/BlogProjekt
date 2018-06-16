@@ -1,34 +1,53 @@
-<h1>Utwórz post na blogu -> <%= @nazwa %></h1>
 
-<%= form_with scope: :post, url: blog_posts_path, html: {multipart: true}, local: true do |form| %>
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+        </div>
+        <div class="col-6">
+          <h1>Utwórz post na <%= @nazwa %></h1>
+
+          <%= form_with scope: :post, url: blog_posts_path, html: {multipart: true}, local: true do |form| %>
+
+              <div class="form-group">
+                <p>
+                  <%= form.label :title, "Tytuł postu" %><br />
+                  <%= form.text_field :title, :class => "form-control" %>
+                </p>
+              </div>
+
+            <div class="form-group">
+              <p>
+                <%= form.label :text_content, "Treść" %><br />
+                <%= form.text_area :text_content, :class => "form-control", :size => 200 %>
+              </p>
+            </div>
+
+            <div class="form-group">
+              <p>
+                <%= form.label :image, "Obrazek" %><br />
+                <%= form.file_field :image%>
+              </p>
+            </div>
+
+            <div class="form-group">
+              <p>
+                <%= form.label :tagipostu, "Tagi postu", title: 'Przykładowe dodane tagów: psy,koty,muzyka', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%> <br/>
+                <%= form.text_field :tagipostu, :class => "form-control" %>
+              </p>
+            </div>
 
 
-  <p>
-    <%= form.label :image %><br />
-    <%= form.file_field :image %>
-  </p>
-  <p>
-    <%= form.label :title %><br />
-    <%= form.text_field :title %>
-  </p>
-  <p>
-    <%= form.label :text_content %><br />
-    <%= form.text_area :text_content %>
-  </p>
-  <p>
-    <%= form.label :status %><br />
-    <%= form.text_field :status %>
-  </p>
+            <p>
+              <%= form.submit "Dodaj post", :class => "btn btn-success"%>
+            </p>
+          <% end %>
 
-  <p>
-    <%= form.label :tagipostu %> <br/>
-    <%= form.text_field :tagipostu %>
-  </p>
-  
-  <p>
-    <%= form.submit "Create" %>
-  </p>
-<% end %>
+        </div>
 
-<%= link_to 'Back', blog_posts_path %>
+        <div class="col">
+
+        </div>
+    </div>
+</div>
 
