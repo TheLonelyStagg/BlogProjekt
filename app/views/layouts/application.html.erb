@@ -10,12 +10,12 @@
     <%= stylesheet_link_tag 'style', media: 'print, screen' %>
   </head>
 
-  <body>
+  <body style="background-color: #e9ecef ">
       <%= render 'layouts/header' %>
 
       <div class="jumbotron">
 
-        <div >
+        <div class="container">
           <% flash.each do |name, massage| %>
             <% case name%>
               <%  when "notice" then type_notice = "alert alert-info"%>
@@ -34,7 +34,7 @@
         </div>
 
 
-        <div style="">
+        <div>
           <%= yield %>
         </div>
 
