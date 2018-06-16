@@ -17,3 +17,13 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+
+});
+$(document).ready(function(){
+    $(".dashboard-tooltip").tooltip()
+
+});
