@@ -42,6 +42,7 @@ class UsersController < ApplicationController
       else
         flash[:error] = 'Bląd podczas usuwania uzytkownika.'
       end
+      redirect_to users_path
     else
       flash[:alert] = 'Brak odpowiednich kwalifikacji. Zaloguj się lub zmień na odpowiednie konto.'
       redirect_to blogs_path

@@ -23,6 +23,13 @@ class BlogsController < ApplicationController
         render :action => "new"
         return
       end
+
+      if (Blog.where('name = ?', params[:blog][:name]).count != 0)
+        flash[:error] = 'Blog o podanej nazwie juz istnieje'
+        render :action => "new"
+        return
+      end
+
       @blog.update_attribute(:user_id, current_user.id)
       @blog.update_attribute(:dataZalozenia, Date.today)
 

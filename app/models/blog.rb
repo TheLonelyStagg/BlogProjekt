@@ -7,5 +7,5 @@ class Blog < ApplicationRecord
 
   attr_accessor :rodzajeblogu
   validates :name, presence: true
-
+  validates :name, uniqueness: true
 end

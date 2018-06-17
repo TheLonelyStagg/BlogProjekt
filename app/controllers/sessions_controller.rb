@@ -37,7 +37,12 @@ class SessionsController < ApplicationController
     if (params[:user][:password] == params[:user][:pass_confirm])
       @user = User.new(user_params_reg)
       if @user.invalid?
-        flash[:error] = 'Pola muszą być wypełnione'
+        if User.where('email = ?', params[:user][:email]).count != 0
+          flash[:error] = 'Konto o podanym mailu już istnieje'
+        else
+          flash[:error] = 'Pola muszą być wypełnione'
+        end
+
         render :action => "new_account"
         return
       end
