@@ -1,25 +1,79 @@
-<table>
-  <tr>
-    <th>Data</th>
-    <th>Title</th>
-    <th>Status</th>
-    <th>ifTop</th>
-    <th>TextContent</th>
-    <th>Img</th>
+<div class="container" style="height: 100%; width: 100%">
+  <div class="row">
+    <div class="col">
 
-  </tr>
+    </div>
 
-  <% for post in @array %>
-    <tr>
-      <td><%=h post.data %></td>
-      <td><%=h post.title %></td>
-      <td><%=h post.status %></td>
-      <td><%=h post.ifTop %></td>
-      <td><%=h post.text_content %></td>
-      <td><%=h post.img_route %></td>
-    </tr>
-  <% end %>
-</table>
+    <div class="col-10">
+      <% for post in @array %>
 
-<br />
+        <div class="card mb-3 ">
+
+          <div class="card-header">
+
+            <% alt_naglowek_dl = 10%>
+            <h2 class="">
+              <%= link_to post.blog.name, blog_path(post.blog_id)%>
+              ->
+              <%= link_to (post.title.blank?)? post.text_content.first(alt_naglowek_dl)+"..." : post.title, blog_post_path(post.blog_id,post)%>
+            </h2>
+          </div>
+
+          <div style = "max-height: 320px;overflow: hidden;">
+            <%= image_tag post.image.url(:medium), {:class => "card-img-top "}%>
+          </div>
+
+          <div class="card-body">
+            <p class="card-text">
+              <% limit_dlugosci_podgladu = 15%>
+              <%=h (post.text_content.length>limit_dlugosci_podgladu+1)? post.text_content.first(limit_dlugosci_podgladu)+"...": post.text_content.first(limit_dlugosci_podgladu) %>
+            </p>
+
+            <p class="card-text">
+              <small class="text-muted">
+                Opublikowane dnia: <%=h post.data.strftime("%d.%m.%Yr.") %>
+              </small>
+            </p>
+          </div>
+
+          <div class="card-footer">
+
+            <div class="row">
+              <div class="col-8">
+                <% for tags in post.tags %>
+                  <span class="badge badge-pill badge-primary">#<%=h tags.tagName%></span>
+                <% end %>
+              </div>
+              <div class="col-4">
+                <div class="float-right">
+                  <% if(logged_in? && (current_user.id == post.blog.user.id || current_user.is_admin )) %>
+
+                    <%= link_to edit_blog_post_path(blog_id: post.blog.id, id: post.id) do %>
+                      <button type="button" class="btn btn-primary">Edytuj</button>
+                    <% end %>
+
+                    <%= link_to [post.blog, post],
+                                method: :delete,
+                                data: { confirm: 'Czy na pewno chcesz usunąc ten post?' } do %>
+                      <button type="button" class="btn btn-primary">Usuń</button>
+                    <% end %>
+
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+      <% end %>
+    </div>
+    <div class="col">
+
+    </div>
+  </div>
+  <br />
+
+</div>
 

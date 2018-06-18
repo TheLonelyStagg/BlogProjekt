@@ -1,32 +1,48 @@
-<h1>Userzy</h1>
+<div class="row">
+  <div class="col">
+    <h1>Użytkownicy</h1>
+  </div>
+  <div class="col">
+    <div class="float-right">
+      <%= link_to new_user_path do %>
+        <button type="button" class="btn btn-dark">Nowy użytkownik</button>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<table>
-  <tr>
-    <th>Nazwa</th>
-    <th>Haslo</th>
-    <th>Imie</th>
-    <th>Nazwisko</th>
-    <th>Mail</th>
-    <th>Numer</th>
-    <th>IsAdmin</th>
-    <th></th>
-  </tr>
+<div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nazwa</th>
+      <th scope="col">Hasło</th>
+      <th scope="col">Imię</th>
+      <th scope="col">Nazwisko</th>
+      <th scope="col">Adres mail</th>
+      <th scope="col">Numer</th>
+      <th scope="col">Administrator?</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% for u in @users %>
+      <tr>
+        <th scope="row"><%=u.id %></th>
+        <td><%=h u.username %></td>
+        <td><%=h u.password %></td>
+        <td><%=h u.name %></td>
+        <td><%=h u.surname %></td>
+        <td><%=h u.email %></td>
+        <td><%=h u.phoneNumber %></td>
+        <td><%=h (u.is_admin)? "tak" : "nie" %></td>
+        <td><%= link_to 'Usun', u, method: :delete, data: {confirm: 'Czy na pewno usunąć tego użytkownika?'} %></td>
+        <td><%= link_to 'Edytuj', edit_user_path(u) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 
-<% for u in @users %>
-  <tr>
-    <td><%=h u.username %></td>
-    <td><%=h u.password %></td>
-    <td><%=h u.name %></td>
-    <td><%=h u.surname %></td>
-    <td><%=h u.email %></td>
-    <td><%=h u.phoneNumber %></td>
-    <td><%=h (u.is_admin)? "owwYeah" : "nope" %></td>
-    <td><%= link_to 'Usun', u, method: :delete, data: {confirm: 'Czy aby na pewno?'} %> |
-    <%= link_to 'Edytuj', edit_user_path(u) %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'Dodaj Usera', new_user_path %>
+</div>

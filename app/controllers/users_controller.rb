@@ -21,10 +21,22 @@ class UsersController < ApplicationController
     if(logged_in? &&  current_user.is_admin )
       @user = User.new(user_params)
 
+      if @user.invalid?
+        if User.where('email = ?', params[:user][:email]).count != 0
+          flash[:error] = 'Konto o podanym mailu już istnieje'
+        else
+          flash[:error] = 'Pola muszą być wypełnione'
+        end
+
+        render :action => "new"
+        return
+      end
+
       if @user.save
         flash[:notice] = 'User zostal utworzony.'
         redirect_to users_path
       else
+        flash[:error] = 'Bląd podczas usuwania uzytkownika.'
         render :action => "new"
       end
     else
