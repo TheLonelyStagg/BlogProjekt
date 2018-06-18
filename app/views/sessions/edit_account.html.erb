@@ -1,50 +1,95 @@
-<h1></h1>
 
-<%= form_with scope: :user, url: {controller: 'sessions',action: 'update_account'}, method: :patch do |form| %>
+<div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+
+      </div>
+
+      <div class="col-6">
+
+        <h1>Edytuj użytkownika</h1>
+        <%= form_with scope: :user, url: {controller: 'sessions',action: 'update_account'}, method: :patch do |form| %>
+        <div class="form-group">
+
+          <p>
+            <%= form.label :username, "Nazwa użytkownika" %><br>
+            <%= form.text_field :username, :class => "form-control", :placeholder => "Nazwa użytkownika" %>
+          </p>
+
+        </div>
+
+        <div class="form-group">
+          <p>
+            <%= form.label :email, "E-mail" %><br>
+            <%= form.text_field :email, :class => "form-control", :placeholder => "E-mail", :readonly => true %>
+          </p>
+        </div>
+
+        <div class="form row">
+          <div class="form-group col-md-6">
+            <p>
+              <%= form.label :password, "Hasło" %><br>
+              <%= form.password_field :password, :class => "form-control", :placeholder => "Hasło" %>
+            </p>
+          </div>
+
+          <div class="form-group col-md-6">
+            <p>
+              <%= form.label :pass_confirm, "Powtórz hasło" %><br>
+              <%= form.password_field :pass_confirm, :class => "form-control", :placeholder => "Powtórz hasło" %>
+            </p>
+          </div>
+        </div>
+
+        <div class="form row">
+          <div class="form-group col-md-6">
+            <p>
+              <%= form.label :name, "Imię" %><br>
+              <%= form.text_field :name, :class => "form-control", :placeholder => "Jan" %>
+            </p>
+          </div>
+
+          <div class="form-group col-md-6">
+            <p>
+              <%= form.label :surname, "Nazwisko" %><br>
+              <%= form.text_field :surname, :class => "form-control", :placeholder => "Kowalski" %>
+            </p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <p>
+            <%= form.label :phoneNumber, "Numer telefonu" %><br>
+            <%= form.text_field :phoneNumber, :class => "form-control"%>
+          </p>
+        </div>
+
+        </br>
+        <p>
+          <%= form.label :old_pass, "Stare hasło" %><br>
+          <%= form.password_field :old_pass, :class => "form-control" %>
+        </p>
 
 
-  <p>
-    <%= form.label :username %><br>
-    <%= form.text_field :username %>
-  </p>
 
-  <p>
-    <%= form.label :new_pass %><br>
-    <%= form.password_field :new_pass %>
-  </p>
-  <p>
-    <%= form.label :pass_confirm %><br>
-    <%= form.password_field :pass_confirm %>
-  </p>
+          <div class="form-group ">
 
-  <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-  </p>
+            <p>
+              <%= form.submit "Edytuj konto", :class => "btn btn-primary" %>
+            </p>
+          </div>
 
-  <p>
-    <%= form.label :surname %><br>
-    <%= form.text_field :surname %>
-  </p>
 
-  <p>
-    <%= form.label :email %><br>
-    <%= form.text_field :email %>
-  </p>
 
-  <p>
-    <%= form.label :phoneNumber %><br>
-    <%= form.text_field :phoneNumber %>
-  </p>
-  </br>
-  <p>
-    <%= form.label :old_pass %><br>
-    <%= form.password_field :old_pass %>
-  </p>
+        <% end %>
 
-  <p>
-    <%= form.submit "Potwierdź" %>
-  </p>
-<% end %>
+      </div>
+      <div class="col">
 
+      </div>
+
+    </div>
+  </div>
+</div>
 

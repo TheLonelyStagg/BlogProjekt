@@ -1,47 +1,77 @@
-<h1>Edytuj usera</h1>
+<div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
 
-<%= form_for (@user) do |form| %>
+      </div>
+
+      <div class="col-6">
+
+        <h1>Edytuj użytkownika</h1>
+        <%= form_for (@user) do |form| %>
 
 
-  <p>
-    <%= form.label :username %><br>
-    <%= form.text_field :username %>
-  </p>
+          <div class="form-group">
 
-  <p>
-    <%= form.label :password %><br>
-    <%= form.text_field :password %>
-  </p>
+            <p>
+              <%= form.label :username, "Nazwa użytkownika" %><br>
+              <%= form.text_field :username, :class => "form-control", :placeholder => "Nazwa użytkownika" %>
+            </p>
 
-  <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-  </p>
+          </div>
 
-  <p>
-    <%= form.label :surname %><br>
-    <%= form.text_field :surname %>
-  </p>
+          <div class="form-group">
+            <p>
+              <%= form.label :email, "E-mail" %><br>
+              <%= form.text_field :email, :class => "form-control", :placeholder => "E-mail" %>
+            </p>
+          </div>
 
-  <p>
-    <%= form.label :email %><br>
-    <%= form.text_field :email %>
-  </p>
+          <div class="form-group">
+              <p>
+                <%= form.label :password, "Hasło" %><br>
+                <%= form.text_field :password, :class => "form-control", :placeholder => "Hasło" %>
+              </p>
 
-  <p>
-    <%= form.label :phoneNumber %><br>
-    <%= form.text_field :phoneNumber %>
-  </p>
+          </div>
 
-  <p>
-    <%= form.label :is_admin %><br>
-    <%= form.check_box :is_admin %>
-  </p>
+          <div class="form row">
+            <div class="form-group col-md-6">
+              <p>
+                <%= form.label :name, "Imię" %><br>
+                <%= form.text_field :name, :class => "form-control", :placeholder => "Jan" %>
+              </p>
+            </div>
 
-  <p>
-    <%= form.submit "Create" %>
-  </p>
-<% end %>
+            <div class="form-group col-md-6">
+              <p>
+                <%= form.label :surname, "Nazwisko" %><br>
+                <%= form.text_field :surname, :class => "form-control", :placeholder => "Kowalski" %>
+              </p>
+            </div>
+          </div>
 
-<%= link_to 'Back', users_path %>
+          <div class="form-group">
+            <p>
+              <%= form.label :phoneNumber, "Numer telefonu" %><br>
+              <%= form.text_field :phoneNumber, :class => "form-control"%>
+            </p>
+          </div>
 
+          <p>
+            <%= form.label :is_admin, "Administrator?" %><br>
+            <%= form.check_box :is_admin %>
+          </p>
+          <p>
+            <%= form.submit "Edytuj", :class => "btn btn-primary" %>
+          </p>
+        <% end %>
+
+      </div>
+      <div class="col">
+
+      </div>
+
+    </div>
+  </div>
+</div>
