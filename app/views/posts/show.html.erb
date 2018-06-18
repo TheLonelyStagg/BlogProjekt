@@ -1,50 +1,117 @@
 
-<h1>Post -> <%= @post.title %></h1>
-<%= link_to 'Back', blog_posts_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-1">
 
-<p style="font-size: small">
-  Created on: <%= @post.data %>
-</p>
-<p>
-  <%= @post.text_content %>
-</p>
+    </div>
+    <div class="col-10">
 
-<br />
+      <div class="card">
 
-<h2>Komentarze: </h2>
-<% if (logged_in?) %>
-  <%= render 'comments/form' %>
-<% else %>
-  <%= link_to 'Zaloguj sie aby dodac komentarz', {controller: 'sessions', action: 'new'} %>
-<% end %>
+        <div class="card-header">
+          <%= @post.title %>
 
-<div>
-<% for komentarz in @comments.reverse_order %>
-
-    <p style="font-size: small">
-      Created by: <%= @users.find{|item| item.id == komentarz.user_id}.username %> <%= time_ago_in_words(komentarz.dataiIGodz) %> ago
-      <% if(logged_in? && (current_user.id == @post.blog.user.id || current_user.id == komentarz.user.id || current_user.is_admin )) %>
-        | <a style="font-size: small"><%= link_to 'Usun', [komentarz.post.blog, komentarz.post, komentarz], method: :delete, data: {confirm: 'Czy aby na pewno?'} %></a>
-      <% end %>
-    </p>
-
-    <p>
-      <%= komentarz.content %>
-
-      <% btnclass = "btn btn-outline-primary btn-sm disabled"%>
-      <% btnactive = (logged_in?)? "false" : "true" %>
-      <% if(logged_in? ) %>
-        <% btnclass = (current_user.voted_for? komentarz)? "btn btn-primary btn-sm" : "btn btn-outline-primary btn-sm"%>
-      <% end %>
-
-      <% urlhrefa = url_for(:action => 'upvote',:controller => 'comments',:comment => komentarz.id, method: :put) %>
-
-      <a href="<%= urlhrefa %>" class="<%= btnclass %>" role="button" aria-disabled="<%= btnactive %>">
-        upVote <span class="badge badge-light"><%= komentarz.cached_votes_up %></span>
-      </a>
+          <div style="font-size: small; float:right">
+            Dodany: <%= @post.data %>
+          </div>
+        </div>
 
 
-    </p>
-    <br/>
+        <div class="text-center">
+          <%= image_tag @post.image.url(:medium), :style => "height:50vw; width:90%;margin-bottom:20px;"%>
+        </div>
+
+        <div class="card-body">
+          <%= @post.text_content %>
+        </div>
+
+        <div class="row">
+          <div class="col">
+
+          </div>
+          <div class="col-11">
+            <% for tags in @post.tags %>
+              <span class="badge badge-pill badge-primary">#<%= tags.tagName%></span>
+            <% end %>
+          </div>
+
+          <div class="col">
+
+          </div>
+
+        </div>
+
+      </br>
+
+      </div>
+
+      <br />
+
+      <div class="container">
+        <h2>Komentarze: </h2>
+        <% if (logged_in?) %>
+          <%= render 'comments/form' %>
+        <% else %>
+          <%= link_to 'Zaloguj sie aby dodac komentarz', {controller: 'sessions', action: 'new'} %>
+        <% end %>
+      </div>
+
+    </br>
+      </br>
+      </br>
+
+      <div>
+        <% for komentarz in @comments.reverse_order %>
+          <div class="card">
+            <div class="card-header">
+              <div style="font-size: small">
+
+                Stworzony przez: <%= @users.find{|item| item.id == komentarz.user_id}.username %> <%= time_ago_in_words(komentarz.dataiIGodz) %> ago
+                <% if(logged_in? && (current_user.id == @post.blog.user.id || current_user.id == komentarz.user.id || current_user.is_admin )) %>
+                  | <a style="font-size: small"><%= link_to 'Usun', [komentarz.post.blog, komentarz.post, komentarz], method: :delete, data: {confirm: 'Czy aby na pewno?'} %></a>
+                <% end %>
+
+                <div style="float:right">
+                  <% btnclass = "btn btn-outline-primary btn-sm disabled"%>
+                  <% btnactive = (logged_in?)? "false" : "true" %>
+                  <% if(logged_in? ) %>
+                    <% btnclass = (current_user.voted_for? komentarz)? "btn btn-primary btn-sm" : "btn btn-outline-primary btn-sm"%>
+                  <% end %>
+
+                  <% urlhrefa = url_for(:action => 'upvote',:controller => 'comments',:comment => komentarz.id, method: :put) %>
+
+                  <a href="<%= urlhrefa %>" class="<%= btnclass %>" role="button" aria-disabled="<%= btnactive %>">
+                    upVote <span class="badge badge-light"><%= komentarz.cached_votes_up %></span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="card-body">
+              <div>
+                <p>
+                  <%= komentarz.content %>
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <br/>
+        <% end %>
+      </div>
+
+
+
+    </div>
+
+    <div class="col-sm-1">
+
+    </div>
+
+
+
   </div>
-<% end %>
+
+</div>
