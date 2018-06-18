@@ -2,8 +2,11 @@ class PostsController < ApplicationController
   def index
     @nazwa = Blog.where("id = ?", params[:blog_id]).first.name
     @posts = Post.where("blog_id = ?", params[:blog_id])
-    posts_rest = @posts.where("ifTop = 0").order("created_at DESC")
-    @posts = @posts.where("ifTop = 1").order("created_at DESC") + posts_rest
+    if @posts.count>0
+      posts_rest = @posts.where("ifTop = 0").order("created_at DESC")
+      @posts = @posts.where("ifTop = 1").order("created_at DESC") + posts_rest
+    end
+
     @blog = Blog.find params[:blog_id]
   end
 
