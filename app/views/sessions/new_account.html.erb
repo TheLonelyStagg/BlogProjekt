@@ -68,9 +68,21 @@
           </div>
 
 
-          <p>
-            <%= form.submit "Stwórz konto", :class => "btn btn-primary" %>
-          </p>
+            <div class="form-group ">
+              <p>
+                <%= recaptcha_tags %>
+              </p>
+            </div>
+
+            <div class="form-group ">
+
+              <p>
+                <%= form.submit "Stwórz konto", :class => "btn btn-primary" %>
+              </p>
+            </div>
+
+
+
         <% end %>
 
 
@@ -78,7 +90,7 @@
 
       <div class="col">
         <p>
-          <%= link_to 'Wróć', login_path %>
+          <%= link_to 'Powrót do ekranu logowania', login_path %>
         </p>
       </div>
   </div>

@@ -34,7 +34,8 @@ class SessionsController < ApplicationController
   end
 
   def create_account
-    if (params[:user][:password] == params[:user][:pass_confirm])
+
+    if (params[:user][:password] == params[:user][:pass_confirm] && verify_recaptcha(message: "Potwierdź że nie jesteś robotem"))
       @user = User.new(user_params_reg)
       if @user.invalid?
         if User.where('email = ?', params[:user][:email]).count != 0
@@ -111,7 +112,7 @@ class SessionsController < ApplicationController
     params.require(:user).permit(:username, :name, :surname, :email, :phoneNumber, :pass_confirm, :old_pass, :new_pass)
   end
   def getBack
-    if(session[:back_url].blank?)
+    if(session[:back_url].blank? )
       redirect_to blogs_path
     else
       redirect_to (session[:back_url])
