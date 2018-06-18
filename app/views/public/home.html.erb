@@ -1,1 +1,8 @@
-StronaDomowa
+<div class="container text-center">
+  <h1 class="jumbotron-heading">Witaj!</h1>
+  <p class="lead text-muted">Witaj na stronie projektowej przedmiotu Rozwiązania Szkieletowe w Tworzeniu Aplikacji wykonanej przez grupę:</br>Sawoń Łukasz i Olszewski Rafał </p>
+  <p>
+    <%= link_to "Przejdź do blogów", blogs_path, {:class => "btn btn-primary my-2"} %>
+    <%= link_to "Załóż konto", {:controller => 'sessions', :action=>'create_account'}, {:class => "btn btn-secondary my-2"} %>
+  </p>
+</div>
