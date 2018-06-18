@@ -8,38 +8,74 @@
     <div class="col-10">
       <% for post in @posts %>
 
-        <div class="card" style="margin:4px; background-color: cornsilk">
-          <% alt_naglowek_dl = 10%>
-          <h2> <%= link_to (post.title.blank?)? post.text_content.first(alt_naglowek_dl)+"..." : post.title, :controller => 'posts', :action=>'show', :id => post.id%> </h2>
+        <div class="card mb-3 ">
 
-          <p>
-            <%= image_tag post.image.url(:medium)%>
-          </p>
+          <div class="card-header">
+            <% alt_naglowek_dl = 10%>
+            <h2 class="">
+              <%= link_to (post.title.blank?)? post.text_content.first(alt_naglowek_dl)+"..." : post.title, :controller => 'posts', :action=>'show', :id => post.id%>
+              <% if post.ifTop %>
+                <span class="badge badge-secondary">!</span>
+              <% end %>
 
-          <p>
-            <% limit_dlugosci_podgladu = 15%>
-            <%=h (post.text_content.length>limit_dlugosci_podgladu+1)? post.text_content.first(limit_dlugosci_podgladu)+"...": post.text_content.first(limit_dlugosci_podgladu) %>
-          </p>
-
-          <p style="font-size: small">
-            Opublikowane dnia: <%=h post.data %>
-            <% if(logged_in? && (current_user.id == post.blog.user.id || current_user.is_admin )) %>
-              | <a style="font-size: small"><%= link_to 'Usuń', [post.blog, post], method: :delete, data: {confirm: 'Czy aby na pewno?'} %></a>
-              | <a style="font-size: small"><%= link_to 'Edytuj', edit_blog_post_path(blog_id: post.blog.id, id: post.id)  %></a>
-            <% end %>
-          </p>
-          <div >
-            <% for tags in post.tags %>
-              <span class="badge badge-pill badge-primary">#<%=h tags.tagName%></span>
-            <% end %>
+            </h2>
           </div>
-          <br/>
+
+          <div style = "max-height: 320px;overflow: hidden;">
+            <%= image_tag post.image.url(:medium), {:class => "card-img-top "}%>
+          </div>
+
+          <div class="card-body">
+            <p class="card-text">
+              <% limit_dlugosci_podgladu = 15%>
+              <%=h (post.text_content.length>limit_dlugosci_podgladu+1)? post.text_content.first(limit_dlugosci_podgladu)+"...": post.text_content.first(limit_dlugosci_podgladu) %>
+            </p>
+
+            <p class="card-text">
+              <small class="text-muted">
+                Opublikowane dnia: <%=h post.data.strftime("%d.%m.%Yr.") %>
+              </small>
+            </p>
+          </div>
+
+            <div class="card-footer">
+
+              <div class="row">
+                <div class="col-8">
+                  <% for tags in post.tags %>
+                    <span class="badge badge-pill badge-primary">#<%=h tags.tagName%></span>
+                  <% end %>
+                </div>
+                <div class="col-4">
+                  <div class="float-right">
+                    <% if(logged_in? && (current_user.id == post.blog.user.id || current_user.is_admin )) %>
+
+                      <%= link_to edit_blog_post_path(blog_id: post.blog.id, id: post.id) do %>
+                        <button type="button" class="btn btn-primary">Edytuj</button>
+                      <% end %>
+
+                      <%= link_to [post.blog, post],
+                                  method: :delete,
+                                  data: { confirm: 'Czy na pewno chcesz usunąc ten post?' } do %>
+                        <button type="button" class="btn btn-primary">Usuń</button>
+                      <% end %>
+
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
         </div>
       <% end %>
     </div>
     <div class="col">
       <% if(logged_in? && (current_user.id == @blog.user.id || current_user.is_admin )) %>
-        <%= link_to 'Dodaj post', new_blog_post_path %>
+        <%= link_to new_blog_post_path do %>
+          <button type="button" class="btn btn-dark">Nowy post</button>
+        <% end %>
       <% end %>
     </div>
   </div>
