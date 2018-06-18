@@ -3,8 +3,8 @@ class PostsController < ApplicationController
     @nazwa = Blog.where("id = ?", params[:blog_id]).first.name
     @posts = Post.where("blog_id = ?", params[:blog_id])
     if @posts.count>0
-      posts_rest = @posts.where("posts.ifTop = 0").order("created_at DESC")
-      @posts = @posts.where("posts.ifTop = 1").order("created_at DESC") + posts_rest
+      posts_rest = @posts.where(:ifTop => false).order("created_at DESC")
+      @posts = @posts.where(:ifTop => true).order("created_at DESC") + posts_rest
     end
 
     @blog = Blog.find params[:blog_id]
